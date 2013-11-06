@@ -1,1 +1,13 @@
-2013/11/01-15:45:37.668 2bd0 Delete type=3 #1
+2013/11/04-15:33:29.173 1a3c Recovering log #12
+2013/11/04-15:33:29.173 1a3c Level-0 table #14: started
+2013/11/04-15:33:29.179 1a3c Level-0 table #14: 484 bytes OK
+2013/11/04-15:33:29.184 1a3c Delete type=0 #12
+2013/11/04-15:33:29.184 1a3c Delete type=3 #10
+2013/11/04-15:33:29.188 d4 Compacting 4@0 + 0@1 files
+2013/11/04-15:33:29.201 d4 Generated table #16: 360 keys, 130435 bytes
+2013/11/04-15:33:29.201 d4 Compacted 4@0 + 0@1 files => 130435 bytes
+2013/11/04-15:33:29.202 d4 Delete type=2 #5
+2013/11/04-15:33:29.202 d4 Delete type=2 #8
+2013/11/04-15:33:29.203 d4 Delete type=2 #11
+2013/11/04-15:33:29.203 d4 Delete type=2 #14
+2013/11/04-15:33:29.203 d4 compacted to: files[ 0 1 0 0 0 0 0 ]

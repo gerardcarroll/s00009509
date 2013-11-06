@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace s00009509.Controllers
+namespace s00009509
 {
     public class HomeController : Controller
     {
@@ -12,6 +12,7 @@ namespace s00009509.Controllers
 
         public ActionResult Index()
         {
+            //get all orders
             var q = from o in db.Orders
                     select o;
 
