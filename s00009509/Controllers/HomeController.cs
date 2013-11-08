@@ -8,15 +8,34 @@ namespace s00009509
 {
     public class HomeController : Controller
     {
-        MusicStoreDBDataContext db = new MusicStoreDBDataContext();
+        MvcMusicStoreEntities db = new MvcMusicStoreEntities();
 
-        public ActionResult Index()
+        protected override void Dispose(bool disposing)
         {
-            //get all orders
-            var q = from o in db.Orders
-                    select o;
+            db.Dispose();
+        }
 
-            return View(q);
+        public ActionResult Index(string searchTerm, int sort = 0)
+        {
+            var allOrders = db.Orders.Where(o => searchTerm == null || o.FirstName.Contains(searchTerm)); 
+            //get all orders
+            switch(sort)
+            {
+                case 1: allOrders = allOrders.OrderByDescending(o => o.OrderDate);
+                    break;
+
+                case 2: allOrders = allOrders.OrderBy(o => o.OrderDate);
+                    break;
+
+                case 3: allOrders = allOrders.OrderByDescending(o => o.Total);
+                    break;
+
+                case 4: allOrders = allOrders.OrderBy(o => o.Total);
+                    break;
+                 
+            }
+             
+            return View(allOrders);
         }
 
         public ActionResult About()
