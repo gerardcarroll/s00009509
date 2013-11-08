@@ -33,9 +33,7 @@
                 <option value="4">Order Value: Low - High</option>
             </select>
         </div>
-           
-       
-        
+
     </div>
 
 </form>
@@ -48,36 +46,18 @@
         <th>
             @Html.DisplayNameFor(model => model.OrderDate)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Username)
-        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.LastName)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.City)
         </th>
-       @* <th>
-            @Html.DisplayNameFor(model => model.State)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PostalCode)
-        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Country)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Total)
         </th>
@@ -89,43 +69,26 @@
         <td>
             @Html.DisplayFor(modelItem => item.OrderDate)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.FirstName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.LastName)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.City)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PostalCode)
-        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Country)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Total)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |
+            @Html.ActionLink("View Albums", "Index", "Album", new { id=item.OrderId }, new{@class="btn btn-info btn-xs"})
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.OrderId }) |
             @Html.ActionLink("Details", "Details", new { id=item.OrderId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderId })
+            @Html.ActionLink("Delete", "Delete", new { id=item.OrderId })*@
         </td>
     </tr>
 }

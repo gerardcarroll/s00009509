@@ -17,9 +17,9 @@ namespace s00009509
 
         public ActionResult Index(string searchTerm, int sort = 0)
         {
-            var allOrders = db.Orders.Where(o => searchTerm == null || o.FirstName.Contains(searchTerm)); 
-            //get all orders
-            switch(sort)
+            var allOrders = db.Orders.Where(o => searchTerm == null || o.FirstName.Contains(searchTerm));
+
+            switch (sort)
             {
                 case 1: allOrders = allOrders.OrderByDescending(o => o.OrderDate);
                     break;
@@ -32,7 +32,7 @@ namespace s00009509
 
                 case 4: allOrders = allOrders.OrderBy(o => o.Total);
                     break;
-                 
+
             }
              
             return View(allOrders);

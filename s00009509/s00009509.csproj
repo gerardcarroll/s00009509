@@ -196,6 +196,7 @@
     <Compile Include="Cart.cs">
       <DependentUpon>MusicDb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>MusicDb.tt</DependentUpon>
@@ -359,6 +360,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Album\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
