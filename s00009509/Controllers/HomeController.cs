@@ -32,7 +32,6 @@ namespace s00009509
 
                 case 4: allOrders = allOrders.OrderBy(o => o.Total);
                     break;
-
             }
              
             return View(allOrders);

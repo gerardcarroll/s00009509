@@ -1,18 +1,20 @@
 ﻿<RecentFiles>
   <RecentFiles>
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Shared/f:_Layout.cshtml" caret="942" fromTop="10" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Controllers/f:AlbumController.cs" caret="555" fromTop="16" />
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/f:MusicDb.edmx.diagram" caret="0" fromTop="0" />
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/f:MusicDb.Designer.cs" caret="0" fromTop="0" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Album/f:Index.cshtml" caret="81" fromTop="3" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:Index.cshtml" caret="1419" fromTop="43" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Controllers/f:HomeController.cs" caret="351" fromTop="14" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Album/f:Index.cshtml" caret="923" fromTop="9" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Shared/f:_Layout.cshtml" caret="2745" fromTop="55" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:App_Start/f:BundleConfig.cs" caret="460" fromTop="12" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Controllers/f:AlbumController.cs" caret="486" fromTop="17" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Controllers/f:HomeController.cs" caret="1020" fromTop="31" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:Index.cshtml" caret="2134" fromTop="20" />
   </RecentFiles>
   <RecentEdits>
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Shared/f:_Layout.cshtml" caret="1216" fromTop="14" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Controllers/f:HomeController.cs" caret="423" fromTop="6" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Controllers/f:AlbumController.cs" caret="584" fromTop="21" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:Index.cshtml" caret="2693" fromTop="25" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Album/f:Index.cshtml" caret="81" fromTop="3" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Controllers/f:HomeController.cs" caret="1020" fromTop="19" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Shared/f:_Layout.cshtml" caret="397" fromTop="10" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Album/f:Index.cshtml" caret="39" fromTop="2" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:App_Start/f:BundleConfig.cs" caret="460" fromTop="12" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Controllers/f:AlbumController.cs" caret="459" fromTop="17" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:Index.cshtml" caret="2219" fromTop="23" />
   </RecentEdits>
 </RecentFiles>

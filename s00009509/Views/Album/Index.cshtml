@@ -1,14 +1,9 @@
 ﻿@model IEnumerable<s00009509.Album>
 
-@{
-    ViewBag.Title = "Albums for Order ";
-}
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h3>@Html.Raw(ViewBag.Message)</h3>
+
 <table class="table table-striped table-hover table-condensed">
     <tr>
         <th>
@@ -27,7 +22,7 @@
         <th>
             @Html.DisplayNameFor(model => model.AlbumArtUrl)
         </th>
-        <th></th>
+        @*<th></th>*@
     </tr>
 
 @foreach (var item in Model) {
@@ -47,11 +42,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.AlbumArtUrl)
         </td>
-        <td>
+        @*<td>
             @Html.ActionLink("Edit", "Edit", new { id=item.AlbumId }) |
             @Html.ActionLink("Details", "Details", new { id=item.AlbumId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.AlbumId })
-        </td>
+        </td>*@
     </tr>
 }
 
