@@ -4,17 +4,17 @@
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/f:MusicDb.Designer.cs" caret="0" fromTop="0" />
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:App_Start/f:BundleConfig.cs" caret="460" fromTop="12" />
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Controllers/f:AlbumController.cs" caret="486" fromTop="11" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Controllers/f:HomeController.cs" caret="1406" fromTop="30" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Shared/f:_Layout.cshtml" caret="0" fromTop="0" />
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Album/f:Index.cshtml" caret="0" fromTop="0" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:Index.cshtml" caret="0" fromTop="0" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Shared/f:_Layout.cshtml" caret="1327" fromTop="8" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Controllers/f:HomeController.cs" caret="537" fromTop="19" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:Index.cshtml" caret="2939" fromTop="22" />
   </RecentFiles>
   <RecentEdits>
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Album/f:Index.cshtml" caret="39" fromTop="2" />
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:App_Start/f:BundleConfig.cs" caret="460" fromTop="12" />
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Controllers/f:AlbumController.cs" caret="459" fromTop="17" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Shared/f:_Layout.cshtml" caret="2443" fromTop="21" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Controllers/f:HomeController.cs" caret="978" fromTop="19" />
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:Index.cshtml" caret="3190" fromTop="34" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Controllers/f:HomeController.cs" caret="1406" fromTop="21" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Shared/f:_Layout.cshtml" caret="1954" fromTop="14" />
   </RecentEdits>
 </RecentFiles>

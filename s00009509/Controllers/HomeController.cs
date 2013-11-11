@@ -20,8 +20,14 @@ namespace s00009509
             //ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name_desc" : "";
             ViewBag.TotalSortParam = sortOrder == "Total" ? "Total_desc" : "Total";
             ViewBag.DateSortParam = sortOrder == "Date" ? "Date_desc" : "Date";
+
+            //var allOrders = from o in db.Orders
+            //                select o;
+            //if (searchTerm != null)
+            //{
             var allOrders = db.Orders.Where(o => searchTerm == null || o.FirstName.Contains(searchTerm));
-            
+            //}
+
             switch (sortOrder)
             {
                 case "Date_desc": allOrders = allOrders.OrderByDescending(o => o.OrderDate);
@@ -39,6 +45,13 @@ namespace s00009509
 
             return View(allOrders);
         }
+
+        //[HttpPost]
+        //public ActionResult Test(List<Order> orders)
+        //{
+
+        //    return null;
+        //}
 
         public ActionResult About()
         {
