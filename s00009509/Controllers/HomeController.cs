@@ -15,27 +15,43 @@ namespace s00009509
             db.Dispose();
         }
 
-        public ActionResult Index(string searchTerm, int sort = 0)
+        public ActionResult Index(string searchTerm, string sortOrder)
         {
+            //ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name_desc" : "";
+            ViewBag.TotalSortParam = sortOrder == "Total" ? "Total_desc" : "Total";
+            ViewBag.DateSortParam = sortOrder == "Date" ? "Date_desc" : "Date";
+
+            //var allOrders = from o in db.Orders
+            //                select o;
+            //if (searchTerm != null)
+            //{
             var allOrders = db.Orders.Where(o => searchTerm == null || o.FirstName.Contains(searchTerm));
+            //}
 
-            switch (sort)
+            switch (sortOrder)
             {
-                case 1: allOrders = allOrders.OrderByDescending(o => o.OrderDate);
+                case "Date_desc": allOrders = allOrders.OrderByDescending(o => o.OrderDate);
                     break;
 
-                case 2: allOrders = allOrders.OrderBy(o => o.OrderDate);
+                case "Date": allOrders = allOrders.OrderBy(o => o.OrderDate);
                     break;
 
-                case 3: allOrders = allOrders.OrderByDescending(o => o.Total);
+                case "Total_desc": allOrders = allOrders.OrderByDescending(o => o.Total);
                     break;
 
-                case 4: allOrders = allOrders.OrderBy(o => o.Total);
+                case "Total": allOrders = allOrders.OrderBy(o => o.Total);
                     break;
             }
-             
+
             return View(allOrders);
         }
+
+        //[HttpPost]
+        //public ActionResult Test(List<Order> orders)
+        //{
+
+        //    return null;
+        //}
 
         public ActionResult About()
         {
