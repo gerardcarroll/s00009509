@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <title>@ViewBag.Title - S00009509 RAD 301 CA1</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
@@ -23,34 +23,27 @@
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li class="active">@Html.ActionLink("Orders","Index","Home")</li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li class="dropdown-header">Nav header</li>
-                                    <li><a href="#">Separated link</a></li>
-                                    <li><a href="#">One more separated link</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                            </ul>
                     </div><!--/.navbar-collapse -->
                 </div>
             </div>
         <div class="jumbotron">
             <div class="container">
-                
+                <h3>RAD 301 Music Store</h3>
             </div>
         </div>
             <div class="container">
                 
                 @RenderBody()
-
-                <footer>
+                
+                @*<!--Following code for the implementation of back button-->
+                @if (Request.UrlReferrer != null)
+                {
+                    <input class="btn btn-primary" value="Go Back" onclick="history.go(-1); return false;" />
+                }
+                
+                <br/><br/>*@
+                <footer class="pull-right">
                     <p>© RAD301 2013</p>
                 </footer>
             </div>
