@@ -4,6 +4,8 @@
 
 ![Screenshot](screen.png)
 
+![Screenshot](screen2.png)
+
 The application has the following features/functionality:
 
 * Bootstrap 3.0 CSS framework to style web page elements as permitted by the styles
@@ -12,5 +14,14 @@ The application has the following features/functionality:
 * Permits searching for an order by First Name
 * Sorting of Order List by Date(Ascending and Descending)
 * Sorting of Order List by Total value of order(Ascending and Descending)
-* Clicking on an Order or via a button, to show the list of Albums in that Order
+* Clicking via a button, to show the list of Albums in that Order
 * A Back button to revert back to previous page/view
+
+## Back Button Code
+
+'''csharp
+@if (Request.UrlReferrer != null)
+        {
+            <input type="button" class="btn btn-danger" value="Go Back" onclick="history.go(-1); return false;" />
+        }
+'''
