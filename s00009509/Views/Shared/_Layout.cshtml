@@ -1,78 +1,59 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title - S00009509 RAD 301 CA1</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-    </head>
-    
-    <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        @Html.ActionLink("CA1 s00009509","Index","Home",null, new {@class="navbar-brand"})
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active">@Html.ActionLink("Orders","Index","Home")</li>
-<<<<<<< HEAD
-                            </ul>
-=======
-                            @*<li><a href="#about">About</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li class="dropdown-header">Nav header</li>
-                                    <li><a href="#">Separated link</a></li>
-                                    <li><a href="#">One more separated link</a></li>
-                                </ul>
-                            </li>*@
-                        </ul>
->>>>>>> 324374524698607a076c0f39a12df41412436d9f
-                    </div><!--/.navbar-collapse -->
-                </div>
-            </div>
-        <div class="jumbotron">
-            <div class="container">
-                <h3>RAD 301 Music Store</h3>
-            </div>
-        </div>
-            <div class="container">
-                
-                @RenderBody()
-<<<<<<< HEAD
-                
-                @*<!--Following code for the implementation of back button-->
-                @if (Request.UrlReferrer != null)
-                {
-                    <input class="btn btn-primary" value="Go Back" onclick="history.go(-1); return false;" />
-                }
-                
-                <br/><br/>*@
-                <footer class="pull-right">
-=======
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - S00009509 RAD 301 CA1</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
 
-                <footer>
->>>>>>> 324374524698607a076c0f39a12df41412436d9f
-                    <p>© RAD301 2013</p>
-                </footer>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("CA1 s00009509", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
-        
-        
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
-    </body>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">@Html.ActionLink("Orders", "Index", "Home")</li>
+
+                </ul>
+            </div>
+            <!--/.navbar-collapse -->
+        </div>
+    </div>
+    <div class="jumbotron">
+        <div class="container">
+            <h3>RAD 301 Music Store</h3>
+        </div>
+    </div>
+    <div class="container">
+
+        @RenderBody()
+
+
+        <!--Following code for the implementation of back button-->
+        @if (Request.UrlReferrer != null)
+        {
+            <input type="button" class="btn btn-primary" value="Go Back" onclick="history.go(-1); return false;" />
+        }
+
+        <br />
+        <br />
+        <footer class="pull-right">
+            <p>© RAD301 2013</p>
+        </footer>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
 </html>
