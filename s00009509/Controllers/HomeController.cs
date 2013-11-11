@@ -17,7 +17,6 @@ namespace s00009509
 
         public ActionResult Index(string searchTerm, string sortOrder)
         {
-            //ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name_desc" : "";
             ViewBag.TotalSortParam = sortOrder == "Total" ? "Total_desc" : "Total";
             ViewBag.DateSortParam = sortOrder == "Date" ? "Date_desc" : "Date";
 

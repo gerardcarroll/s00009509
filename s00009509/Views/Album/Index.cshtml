@@ -10,7 +10,8 @@
             @Html.DisplayNameFor(model => model.AlbumId)
         </th>
         <th>
-            Artist Name
+            <!--Display "Artist" for clarity-->
+            Artist
             @*@Html.DisplayNameFor(model => model.Artist.Name)*@
         </th>
         <th>
@@ -22,7 +23,6 @@
         <th>
             @Html.DisplayNameFor(model => model.AlbumArtUrl)
         </th>
-        @*<th></th>*@
     </tr>
 
 @foreach (var item in Model) {
@@ -42,11 +42,6 @@
         <td>
             @Html.DisplayFor(modelItem => item.AlbumArtUrl)
         </td>
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AlbumId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AlbumId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AlbumId })
-        </td>*@
     </tr>
 }
 
