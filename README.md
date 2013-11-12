@@ -2,9 +2,17 @@
 
 **Submission Date 12/11/2013**
 
+#### Home Page
+
 ![Screenshot](screen.png)
 
+---
+
+### Albums Page
+
 ![Screenshot](screen2.png)
+
+---
 
 The application has the following features/functionality:
 
@@ -17,10 +25,21 @@ The application has the following features/functionality:
 * Clicking via a button, to show the list of Albums in that Order
 * A Back button to revert back to previous page/view
 
+---
+
 #### Home Index Method
 
 ![Screenshot](homeIndex.png)
 
+---
+
 #### Back Button Code
 
 ![Screenshot](backCode.png)
+
+```csharp
+@if (Request.UrlReferrer != null)
+        {
+            <input type="button" class="btn btn-danger" value="Go Back" onclick="history.go(-1); return false;" />
+        }
+```
