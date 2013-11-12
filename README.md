@@ -17,11 +17,10 @@ The application has the following features/functionality:
 * Clicking via a button, to show the list of Albums in that Order
 * A Back button to revert back to previous page/view
 
-## Back Button Code
+#### Home Index Method
 
-'''csharp
-@if (Request.UrlReferrer != null)
-        {
-            <input type="button" class="btn btn-danger" value="Go Back" onclick="history.go(-1); return false;" />
-        }
-'''
+![Screenshot](homeIndex.png)
+
+#### Back Button Code
+
+![Screenshot](backCode.png)
