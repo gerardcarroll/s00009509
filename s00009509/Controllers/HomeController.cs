@@ -21,6 +21,7 @@ namespace s00009509
             
             var allOrders = db.Orders.Where(o => searchTerm == null || o.FirstName.Contains(searchTerm));
             
+            //Switch on sortOrder to decide orderBy
             switch (sortOrder)
             {
                 case "descend": allOrders = allOrders.OrderByDescending(o => o.OrderDate);

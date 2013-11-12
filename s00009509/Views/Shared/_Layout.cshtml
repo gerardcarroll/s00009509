@@ -37,8 +37,8 @@
 
         @RenderBody()
 
-
-        <!--Following code for the implementation of back button-->
+        <!--Following code for the implementation of back button,
+            Will only appear if it has to, got onclick call online-->
         @if (Request.UrlReferrer != null)
         {
             <input type="button" class="btn btn-danger" value="Go Back" onclick="history.go(-1); return false;" />
@@ -50,7 +50,6 @@
             <p>© RAD301 2013</p>
         </footer>
     </div>
-
 
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)

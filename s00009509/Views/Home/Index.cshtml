@@ -2,10 +2,10 @@
 
 
 <!--Display Total no. of orders-->
-
 <h2>@Model.Count() No. Orders</h2>
 <br/>    
 
+<!--Form for Search Action-->
 <form method="GET">
     <div class="row" role="form">
         <div class="form-group col-md-2">
@@ -17,18 +17,17 @@
     </div>
 </form>
 
+<!--Table to display Orders-->
 <table class="table table-striped table-hover table-condensed">
     <tr>
         <th>
             <div class="btn-group">
                 <a class="dropdown-toggle" data-toggle="dropdown">Order Date</a>
-                @*<button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">Order Date <span class="caret"></span></button>*@
                 <ul class="dropdown-menu" role="menu">
                     <li>@Html.ActionLink("Ascending", "Index", new { sortOrder = "ascend", searchTerm = Request.QueryString["searchTerm"] })</li>
                     <li>@Html.ActionLink("Descending", "Index", new { sortOrder = "descend", searchTerm = Request.QueryString["searchTerm"] })</li>
                 </ul>
             </div>
-            @*@Html.ActionLink("Order Date", "Index", new { sortOrder = ViewBag.DateSortParam, searchTerm = Request.QueryString["searchTerm"] })*@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.OrderId)
@@ -48,13 +47,11 @@
         <th>
             <div class="btn-group">
                 <a class="dropdown-toggle" data-toggle="dropdown">Total</a>
-                @*<button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">Total <span class="caret"></span></button>*@
                 <ul class="dropdown-menu" role="menu">
                     <li>@Html.ActionLink("Ascending", "Index", new { sortOrder = "Value_asc", searchTerm = Request.QueryString["searchTerm"] })</li>
                     <li>@Html.ActionLink("Descending", "Index", new { sortOrder = "Value_desc", searchTerm = Request.QueryString["searchTerm"] })</li>
                 </ul>
             </div>
-            @*@Html.ActionLink("Total", "Index", new { sortOrder = ViewBag.TotalSortParam, searchTerm = Request.QueryString["searchTerm"] })*@
         </th>
         <th></th>
     </tr>
@@ -63,6 +60,9 @@
     {
         <tr>
             <td>
+                @*The "ShortDateTime" call is for the Shared partial view to format OrderDate to ShortDateString.
+                    This view is in Views->Shared->DisplayTemplates..
+                     As this is Shared it could be used in other views*@
                 @Html.DisplayFor(modelItem => item.OrderDate, "ShortDateTime")
             </td>
             <td>

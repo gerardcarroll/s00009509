@@ -64,7 +64,7 @@ public ActionResult Index(string searchTerm, string sortOrder)
 
 @Model.ToShortDateString()
 ```
-Using the above partial view:
+#### Using the above partial view:
 
 ```csharp
 @Html.DisplayFor(modelItem => item.OrderDate, "ShortDateTime")
