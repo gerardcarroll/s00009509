@@ -1,18 +1,6 @@
-### RAD 301 CA1 MVC Bootstrap App
+## RAD 301 CA1 MVC Bootstrap App
 
 **Submission Date 12/11/2013**
-
-#### Home Page
-
-![Screenshot](screen.png)
-
----
-
-### Albums Page
-
-![Screenshot](screen2.png)
-
----
 
 The application has the following features/functionality:
 
@@ -27,15 +15,52 @@ The application has the following features/functionality:
 
 ---
 
-#### Home Index Method
+### Home Page
 
-![Screenshot](homeIndex.png)
+![Screenshot](screen.png)
 
 ---
 
-#### Back Button Code
+### Albums Page
 
-![Screenshot](backCode.png)
+![Screenshot](screen2.png)
+
+---
+
+
+### Home Index Method
+
+```csharp
+public ActionResult Index(string searchTerm, string sortOrder)
+        {
+            ViewBag.message = "RAD 301 Music Store Orders";
+            ViewBag.TotalSortParam = sortOrder == "Total" ? "Total_desc" : "Total";
+            ViewBag.DateSortParam = sortOrder == "Date" ? "Date_desc" : "Date";
+
+            var allOrders = db.Orders.Where(o => searchTerm == null || o.FirstName.Contains(searchTerm));
+            
+            switch (sortOrder)
+            {
+                case "Date_desc": allOrders = allOrders.OrderByDescending(o => o.OrderDate);
+                    break;
+
+                case "Date": allOrders = allOrders.OrderBy(o => o.OrderDate);
+                    break;
+
+                case "Total_desc": allOrders = allOrders.OrderByDescending(o => o.Total);
+                    break;
+
+                case "Total": allOrders = allOrders.OrderBy(o => o.Total);
+                    break;
+            }
+
+            return View(allOrders);
+        }
+```
+
+---
+
+### Back Button Code
 
 ```csharp
 @if (Request.UrlReferrer != null)
