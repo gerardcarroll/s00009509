@@ -1,5 +1,5 @@
-2013/11/11-22:44:56.747 1eec Recovering log #3
-2013/11/11-22:44:56.748 1eec Level-0 table #5: started
-2013/11/11-22:44:56.758 1eec Level-0 table #5: 142553 bytes OK
-2013/11/11-22:44:56.763 1eec Delete type=0 #3
-2013/11/11-22:44:56.763 1eec Delete type=3 #2
+2013/11/11-22:50:02.507 1b1c Recovering log #6
+2013/11/11-22:50:02.507 1b1c Level-0 table #8: started
+2013/11/11-22:50:02.510 1b1c Level-0 table #8: 360 bytes OK
+2013/11/11-22:50:02.514 1b1c Delete type=0 #6
+2013/11/11-22:50:02.514 1b1c Delete type=3 #4

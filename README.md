@@ -4,8 +4,6 @@
 
 The application has the following features/functionality:
 
-* Bootstrap 3.0 CSS framework to style web page elements as permitted by the styles
-* Entity Framework Data Access Layer
 * Initial (Home) page displays a list of Orders for Albums
 * Permits searching for an order by First Name
 * Sorting of Order List by Date(Ascending and Descending)
@@ -33,30 +31,28 @@ The application has the following features/functionality:
 
 ```csharp
 public ActionResult Index(string searchTerm, string sortOrder)
-        {
+		{
             ViewBag.message = "RAD 301 Music Store Orders";
-            ViewBag.TotalSortParam = sortOrder == "Total" ? "Total_desc" : "Total";
-            ViewBag.DateSortParam = sortOrder == "Date" ? "Date_desc" : "Date";
-
+            
             var allOrders = db.Orders.Where(o => searchTerm == null || o.FirstName.Contains(searchTerm));
             
             switch (sortOrder)
             {
-                case "Date_desc": allOrders = allOrders.OrderByDescending(o => o.OrderDate);
+                case "descend": allOrders = allOrders.OrderByDescending(o => o.OrderDate);
                     break;
 
-                case "Date": allOrders = allOrders.OrderBy(o => o.OrderDate);
+                case "ascend": allOrders = allOrders.OrderBy(o => o.OrderDate);
                     break;
 
-                case "Total_desc": allOrders = allOrders.OrderByDescending(o => o.Total);
+                case "Value_desc": allOrders = allOrders.OrderByDescending(o => o.Total);
                     break;
 
-                case "Total": allOrders = allOrders.OrderBy(o => o.Total);
+                case "Value_asc": allOrders = allOrders.OrderBy(o => o.Total);
                     break;
             }
 
             return View(allOrders);
-        }
+		}       
 ```
 
 ---
