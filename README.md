@@ -12,6 +12,7 @@ The application has the following features/functionality:
 * Sorting of Order List by Total value of order(Ascending and Descending)
 * Clicking via a button, to show the list of Albums in that Order
 * A Back button to revert back to previous page/view
+* Implemented a small Partial View for DateTime String in a Template
 
 ---
 
@@ -59,6 +60,19 @@ public ActionResult Index(string searchTerm, string sortOrder)
 ```
 
 ---
+
+### Format Order Date With Partial View 
+
+```csharp
+@model System.DateTime
+
+@Model.ToShortDateString()
+```
+Using the above partial view:
+
+```csharp
+@Html.DisplayFor(modelItem => item.OrderDate, "ShortDateTime")
+```
 
 ### Back Button Code
 

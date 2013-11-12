@@ -18,23 +18,23 @@ namespace s00009509
         public ActionResult Index(string searchTerm, string sortOrder)
         {
             ViewBag.message = "RAD 301 Music Store Orders";
-            ViewBag.TotalSortParam = sortOrder == "Total" ? "Total_desc" : "Total";
-            ViewBag.DateSortParam = sortOrder == "Date" ? "Date_desc" : "Date";
+            //ViewBag.TotalSortParam = sortOrder == "Total" ? "Total_desc" : "Total";
+            //ViewBag.DateSortParam = sortOrder == "Date" ? "Date_desc" : "Date";
 
             var allOrders = db.Orders.Where(o => searchTerm == null || o.FirstName.Contains(searchTerm));
             
             switch (sortOrder)
             {
-                case "Date_desc": allOrders = allOrders.OrderByDescending(o => o.OrderDate);
+                case "descend": allOrders = allOrders.OrderByDescending(o => o.OrderDate);
                     break;
 
-                case "Date": allOrders = allOrders.OrderBy(o => o.OrderDate);
+                case "ascend": allOrders = allOrders.OrderBy(o => o.OrderDate);
                     break;
 
-                case "Total_desc": allOrders = allOrders.OrderByDescending(o => o.Total);
+                case "Value_desc": allOrders = allOrders.OrderByDescending(o => o.Total);
                     break;
 
-                case "Total": allOrders = allOrders.OrderBy(o => o.Total);
+                case "Value_asc": allOrders = allOrders.OrderBy(o => o.Total);
                     break;
             }
 
