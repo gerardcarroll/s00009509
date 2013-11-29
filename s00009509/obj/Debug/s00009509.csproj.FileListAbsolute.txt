@@ -257,3 +257,4 @@ C:\Users\Gerard\SkyDrive.old\3rdYear\rad_301\CA1\s00009509\bin\zh-Hant\System.Sp
 C:\Users\Gerard\SkyDrive.old\3rdYear\rad_301\CA1\s00009509\obj\Debug\s00009509.csprojResolveAssemblyReference.cache
 C:\Users\Gerard\SkyDrive.old\3rdYear\rad_301\CA1\s00009509\obj\Debug\s00009509.dll
 C:\Users\Gerard\SkyDrive.old\3rdYear\rad_301\CA1\s00009509\obj\Debug\s00009509.pdb
+C:\Users\Gerard\SkyDrive\3rdYear\rad_301\CA1\s00009509\bin\s00009509.dll.config
