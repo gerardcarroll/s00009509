@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Threading;
 
 namespace s00009509.Controllers
 {
@@ -13,13 +14,48 @@ namespace s00009509.Controllers
         //
         // GET: /Home/
 
-        public ActionResult Index()
+        public ActionResult Index(int? empId, int? EmployeeID)
         {
-            var q = from o in db.Orders
-                    select o;
+            string test = "";
 
-            return View(q);
+            //if(Request.IsAjaxRequest())
+            //{
+            //    var e1 = db.Orders.Where(e => e.EmployeeID == EmployeeID);
+            //    return PartialView("_EmpOrders");
+            //}
+            if(EmployeeID != null)
+            {
+                var e1 = db.Orders.Where(e => e.EmployeeID == EmployeeID);
+                return PartialView("_EmpOrders");
+            }
+
+            if (empId != null)
+            {
+                //Thread.Sleep(2000);
+                var e = (from em in db.Employees
+                         where em.EmployeeID == empId
+                         select em).FirstOrDefault();
+                return PartialView("_EmpDetails", e);
+            }
+                        
+            return View(db.Orders);
         }
+
+        //[HttpPost]
+
+        public ActionResult EmpIndex(int? employeeId)
+        {
+            if (employeeId != null)
+            {
+                var e = (from em in db.Employees
+                        where em.EmployeeID == employeeId
+                        select em).FirstOrDefault();
+                return PartialView("_EmpDetails", e);
+            }
+
+            return View();
+        }
+
 
         //
         // GET: /Home/Details/5

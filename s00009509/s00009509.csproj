@@ -369,8 +369,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ShortDateTime.cshtml" />
     <Content Include="Views\Home\_ShippDetails.cshtml" />
+    <Content Include="Views\Home\_EmpDetails.cshtml" />
+    <Content Include="Views\Home\_EmpOrders.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\Images\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
