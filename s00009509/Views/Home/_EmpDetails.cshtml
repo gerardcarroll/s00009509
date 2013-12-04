@@ -1,22 +1,7 @@
 ﻿@model s00009509.Employee
 
-@*<table class="table table-hover table-striped">
-        <tr>
-            @Html.Label("Employee Details:")
-                    </tr>
-        <tr>
-            <td>Name:</td>
-            <td>@String.Format("{0} {1}",Model.FirstName,Model.LastName)</td>
-        </tr>
-        <tr>
-            <td>Reports To:</td>
-            <td>@{Html.RenderPartial("_ReportsTo", Model.ReportsTo);}</td>
-        </tr>
 
-    </table>*@
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
 
 <style>
     .toggler {
@@ -58,7 +43,11 @@
     </p>
     
     <p>
-        @using (@Ajax.BeginForm("Index", "Home", new AjaxOptions
+        @Ajax.ActionLink("View Orders", "Index", "Home", new { employeeId = Model.EmployeeID },
+        new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "OrderList", LoadingElementId = "loader1" },
+        new { @class = "btn btn-md btn-success"})
+
+        @*@using (@Ajax.BeginForm("Index", "Home", new AjaxOptions
     {
         InsertionMode = InsertionMode.Replace,
         UpdateTargetId = "orderList",
@@ -70,7 +59,7 @@
                 <div class="col-sm-2">
                     @Html.ActionLink("View Orders", "Index", "Home", Model.EmployeeID, new { @class = "btn btn-md btn-success" })                    
                 </div>
-            </div>}
+            </div>}*@
     </p>
 </div>
 
@@ -84,16 +73,12 @@
         //        var selectedEffect = "explode";
 
         // run the effect
-        $("#effect").show("explode", options, 500);
+        $("#effect").effect("bounce");
         //    };
         //});
-        function callback() {
-            setTimeout(function () {
-                $("#effect:visible").removeAttr("style").fadeOut();
-            }, 1000);
-        };
+        
 
-        $("#effect").hide();
+        //$("#effect").hide();
 
         //$(window).scroll(function () {
         //    $("#effect")

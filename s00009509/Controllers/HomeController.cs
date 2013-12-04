@@ -14,7 +14,7 @@ namespace s00009509.Controllers
         //
         // GET: /Home/
 
-        public ActionResult Index(int? empId, int? EmployeeID)
+        public ActionResult Index(int? empId, int? employeeID)
         {
             string test = "";
 
@@ -23,10 +23,11 @@ namespace s00009509.Controllers
             //    var e1 = db.Orders.Where(e => e.EmployeeID == EmployeeID);
             //    return PartialView("_EmpOrders");
             //}
-            if(EmployeeID != null)
+            if(employeeID != null)
             {
-                var e1 = db.Orders.Where(e => e.EmployeeID == EmployeeID);
-                return PartialView("_EmpOrders");
+                //Thread.Sleep(2000);
+                var e1 = db.Orders.Where(e => e.EmployeeID == employeeID);
+                return PartialView("_EmpOrders", e1);
             }
 
             if (empId != null)
