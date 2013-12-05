@@ -67,7 +67,7 @@
 
             @foreach (var item in Model)
             {
-                <tr id="@item.EmployeeID" onclick="getEmpDetails(@item.EmployeeID)">
+                <tr id="@item.EmployeeID" onclick="getEmpDetails(@item.EmployeeID)" style="cursor:pointer">
                     <td>
                         @Html.DisplayFor(modelItem => item.CustomerID)
                     </td>
