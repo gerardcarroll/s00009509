@@ -16,7 +16,7 @@ namespace s00009509.Controllers
 
         public ActionResult Index(int? empId, int? employeeID)
         {
-            string test = "";
+            //string test = "";
 
             //if(Request.IsAjaxRequest())
             //{
