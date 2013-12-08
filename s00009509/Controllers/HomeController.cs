@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Threading;
+using System.Data;
+using System.Data.Entity;
+using PagedList;
 
 namespace s00009509.Controllers
 {
@@ -11,136 +14,131 @@ namespace s00009509.Controllers
     {
         NorthwindEntities db = new NorthwindEntities();
 
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            db.Dispose();
+        }
+
         //
         // GET: /Home/
 
-        public ActionResult Index(int? empId, int? employeeID)
+        public ActionResult Index(int? empId, int? page)
         {
-            //string test = "";
-
-            //if(Request.IsAjaxRequest())
-            //{
-            //    var e1 = db.Orders.Where(e => e.EmployeeID == EmployeeID);
-            //    return PartialView("_EmpOrders");
-            //}
-            if(employeeID != null)
+            if (Request.IsAjaxRequest())
             {
-                //Thread.Sleep(2000);
-                var e1 = db.Orders.Where(e => e.EmployeeID == employeeID);
-                return PartialView("_EmpOrders", e1);
-            }
+                var e = (db.Employees.Where(em => em.EmployeeID == empId)).FirstOrDefault();
 
-            if (empId != null)
-            {
-                //Thread.Sleep(2000);
-                var e = (from em in db.Employees
-                         where em.EmployeeID == empId
-                         select em).FirstOrDefault();
+                //to display emp details in box
                 return PartialView("_EmpDetails", e);
             }
+
+            // setup PagedList settings
+            int pageSize = 10;
+            int pageNumber = page ?? 1;
                         
-            return View(db.Orders);
+            return View(db.Orders.OrderBy(o=>o.OrderID).ToPagedList(pageNumber,pageSize));
         }
 
-        //[HttpPost]
 
-        public ActionResult EmpIndex(int? employeeId)
+
+        public ActionResult EmpIndex(int? employeeId, int? page)
         {
-            if (employeeId != null)
+            // setup PagedList settings
+            int pageSize = 10;
+            int pageNumber = page ?? 1;
+
+            var e1 = db.Orders.Where(e => e.EmployeeID == employeeId).OrderBy(o => o.OrderID);
+
+            ViewBag.empID = employeeId;
+
+            if (e1 != null)
             {
-                var e = (from em in db.Employees
-                        where em.EmployeeID == employeeId
-                        select em).FirstOrDefault();
-                return PartialView("_EmpDetails", e);
+                var q = db.Employees.Find(employeeId);
+                ViewBag.Title = "Orders By " + q.FirstName + " " + q.LastName;
+                
+                //to display orders for the particular employee
+                return PartialView("_EmpOrders", e1.ToPagedList(pageNumber, pageSize));
+               
             }
 
-            return View();
-        }
-
-
-        //
-        // GET: /Home/Details/5
-
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        //
-        // GET: /Home/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Home/Create
-
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+            return View("Index", db.Orders.OrderBy(o => o.OrderID).ToPagedList(pageNumber, pageSize));
+        }        
 
         //
         // GET: /Home/Edit/5
-
+        
         public ActionResult Edit(int id)
         {
-            return View();
+            Order order = db.Orders.Find(id);
+            
+            ViewBag.EmployeeID = db.Employees.Select(e => new {e.LastName, e.EmployeeID }).Distinct().ToList();
+            ViewBag.ShipperID = db.Shippers.Select(s => new {s.CompanyName, s.ShipperID }).Distinct().ToList();
+            
+            return (order == null) ? View() : View(order);
         }
 
         //
         // POST: /Home/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, Order order)
         {
-            try
+            if(ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                db.Entry(order).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            
+            ViewBag.EmpList = new SelectList(db.Employees, "EmployeeID", "LastName", order.EmployeeID);
+            ViewBag.ShipList = new SelectList(db.Shippers, "ShipId", "ShipName", order.Shipper.ShipperID);
+
+            return View(order);
         }
 
         //
         // GET: /Home/Delete/5
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int orderid)
         {
-            return View();
+            Order order = db.Orders.Find(orderid);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+
+            return PartialView("_Delete", order);              
         }
 
-        //
-        // POST: /Home/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        
+        
+        public ActionResult DeleteConfirm(int orderId)
         {
             try
             {
-                // TODO: Add delete logic here
+                // get all rows with OrderID in Order_details table                
+                var q = db.Order_Details.Where(od => od.OrderID == orderId);
+
+                //delete all of these rows
+                foreach (Order_Detail i in q)
+                {
+                    db.Order_Details.Remove(i);
+                }                
+
+                //now get the row from Orders table
+                Order x = db.Orders.Find(orderId);
+                    
+                //delete the Order
+                db.Orders.Remove(x);
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("Index");
             }
         }
     }

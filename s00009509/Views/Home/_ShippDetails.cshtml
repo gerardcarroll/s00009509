@@ -1,5 +1,11 @@
 ﻿@model s00009509.Order
 
-@Html.ValueFor(model => Model, String.Format("Shipped Date: {0}, Via: {1}, Name: {2}, Address: {3}, City: {4}, Country: {5}, Postal Code: {6}",
-                    Model.ShippedDate, Model.ShipVia, Model.ShipName, Model.ShipAddress, Model.ShipCity,
-                    Model.ShipCountry, Model.ShipPostalCode))
+@{
+    string s = String.Format("Shipped Date: {0}, Via: {1}, Name: {2}, Address: {3}, City: {4}, Country: {5}, Postal Code: {6}",
+                             Model.ShippedDate, Model.Shipper.CompanyName, Model.ShipName, Model.ShipAddress, Model.ShipCity,
+                             Model.ShipCountry, Model.ShipPostalCode);
+                             
+    string limit = s.Substring(0, Math.Min(100, s.Length)) + "....";
+}
+
+@Html.ValueFor(model => Model, limit)

@@ -83,7 +83,6 @@ C:\Users\Gerard\SkyDrive\3rdYear\rad_301\CA1_Repo\s00009509\s00009509\bin\zh-Han
 C:\Users\Gerard\SkyDrive\3rdYear\rad_301\CA1_Repo\s00009509\s00009509\obj\Debug\s00009509.csprojResolveAssemblyReference.cache
 C:\Users\Gerard\SkyDrive\3rdYear\rad_301\CA1_Repo\s00009509\s00009509\obj\Debug\s00009509.dll
 C:\Users\Gerard\SkyDrive\3rdYear\rad_301\CA1_Repo\s00009509\s00009509\obj\Debug\s00009509.pdb
-C:\Users\Gerard\SkyDrive\3rdYear\rad_301\CA1\s00009509\bin\s00009509.dll.config
 C:\Users\Gerard\SkyDrive\3rdYear\rad_301\CA1\s00009509\bin\s00009509.dll
 C:\Users\Gerard\SkyDrive\3rdYear\rad_301\CA1\s00009509\bin\s00009509.pdb
 C:\Users\Gerard\SkyDrive\3rdYear\rad_301\CA1\s00009509\bin\Antlr3.Runtime.dll
@@ -339,3 +338,7 @@ C:\Users\s00009509\s00009509\s00009509\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\s00009509\s00009509\s00009509\obj\Debug\s00009509.csprojResolveAssemblyReference.cache
 C:\Users\s00009509\s00009509\s00009509\obj\Debug\s00009509.dll
 C:\Users\s00009509\s00009509\s00009509\obj\Debug\s00009509.pdb
+C:\Users\Gerard\SkyDrive\3rdYear\rad_301\CA1\s00009509\bin\PagedList.dll
+C:\Users\Gerard\SkyDrive\3rdYear\rad_301\CA1\s00009509\bin\PagedList.Mvc.dll
+C:\Users\Gerard\SkyDrive\3rdYear\rad_301\CA1\s00009509\bin\PagedList.xml
+C:\Users\Gerard\SkyDrive\3rdYear\rad_301\CA1\s00009509\bin\PagedList.Mvc.xml

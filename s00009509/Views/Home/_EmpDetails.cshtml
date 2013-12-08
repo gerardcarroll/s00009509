@@ -1,89 +1,39 @@
 ﻿@model s00009509.Employee
 
 
+@{
+    string s = "";
+    s = Model.ReportsTo != null ? String.Format("{0} {1}", Model.Employee1.FirstName, Model.Employee1.LastName) : String.Format("N/A");
+}
 
-
-<style>
-    .toggler {
-        width: 500px;
-        height: 200px;
-    }
-
-    #button {
-        padding: .5em 1em;
-        text-decoration: none;
-    }
-
-    #effect {
-        width: 240px;
-        height: 190px;
-        padding: 0.4em;
-        position: relative;
-    }
-
-        #effect h3 {
-            margin: 0;
-            padding: 0.4em;
-            text-align: center;
-        }
-</style>
-
-<div id="effect" class="ui-widget-content ui-corner-all">
+<div id="effect" class="ui-widget-content ui-corner-all" style="margin-top: 200px">
     <h3 class="ui-widget-header ui-corner-all">Employee Details:</h3>
     <br />
     <p>
-        @*<tr>
-                @Html.Label("Employee Details:")
-            </tr>*@
-        Emp ID: @Model.EmployeeID
+        <strong>ID: </strong>@Model.EmployeeID
         <br />
-        Name: @String.Format("{0} {1}", Model.FirstName, Model.LastName)
+        <strong>Name: </strong>@String.Format("{0} {1}", Model.FirstName, Model.LastName)
         <br />
-        Reports To: @String.Format("{0} {1}", Model.Employee1.FirstName, Model.Employee1.LastName)
-    </p>
-    
-    <p>
-        @Ajax.ActionLink("View Orders", "Index", "Home", new { employeeId = Model.EmployeeID },
-        new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "OrderList", LoadingElementId = "loader1" },
-        new { @class = "btn btn-md btn-success"})
+        <strong>Total Orders: </strong>@String.Format("{0}", Model.Orders.Count)
+        <br />
+        <strong>Reports To: </strong>@s
 
-        @*@using (@Ajax.BeginForm("Index", "Home", new AjaxOptions
-    {
-        InsertionMode = InsertionMode.Replace,
-        UpdateTargetId = "orderList",
-        LoadingElementId = "loader1"
-    },
-    new { @class = "form-horizontal", @role = "form" }))
-        {
-            <div class="row form-group">
-                <div class="col-sm-2">
-                    @Html.ActionLink("View Orders", "Index", "Home", Model.EmployeeID, new { @class = "btn btn-md btn-success" })                    
-                </div>
-            </div>}*@
+    </p>
+
+    <p>
+        @Ajax.ActionLink("View " + Model.FirstName + "'s Orders", "EmpIndex", "Home", new { employeeId = Model.EmployeeID },
+                         new AjaxOptions() { InsertionMode = InsertionMode.Replace, UpdateTargetId = "OrderList", LoadingElementId = "loader1" },
+                         new { @class = "btn btn-md btn-success" })
+
     </p>
 </div>
 
 <script>
+
     $(document).ready(function () {
-        //$("#effect").hide();
 
-        //$(function () {
-        //    function runEffect() {
-        //        // get effect type from
-        //        var selectedEffect = "explode";
+        $("#effect").effect("bounce", "", 300, "");
 
-        // run the effect
-        $("#effect").effect("bounce");
-        //    };
-        //});
-        
-
-        //$("#effect").hide();
-
-        //$(window).scroll(function () {
-        //    $("#effect")
-        //           .animate({ "marginTop": ($(window).scrollTop() + 0) + "px" }, "fast");
-        //});
     })
 
 </script>

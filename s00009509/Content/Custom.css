@@ -1,0 +1,22 @@
+﻿.cell {
+    width: 600px;
+}
+
+.cellSwitch {
+    width: 428px;
+}
+
+#effect {
+    width: 240px;
+    height: 220px;
+    padding: 0.4em;
+    position: relative;
+}
+
+#effect h3 {
+    margin: 0;
+    padding: 0.3em;
+    text-align: center;
+}
+
+

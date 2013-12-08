@@ -1,0 +1,73 @@
+﻿@model s00009509.Order
+
+@*
+Form Will only allow to edit the Employee and Shipper Fields via dropdownlists
+*@
+
+@{
+    ViewBag.Title = "Edit Order " + Model.OrderID;
+}
+
+@using (Html.BeginForm("Edit", "Home",
+    new { id = Model.OrderID }, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    
+ @Html.AntiForgeryToken()
+ @Html.ValidationSummary(true)
+ @Html.HiddenFor(model => model.OrderID)
+
+    <fieldset>
+        <legend>Order</legend>
+        <form role="form">
+            @Html.HiddenFor(model => model.OrderID)
+            @Html.HiddenFor(model => model.CustomerID)
+            @Html.HiddenFor(model => model.OrderDate)
+            @Html.HiddenFor(model => model.RequiredDate)
+            @Html.HiddenFor(model => model.Freight)
+            @Html.HiddenFor(model => model.ShipName)
+            @Html.HiddenFor(model => model.ShipAddress)
+            @Html.HiddenFor(model => model.ShipCity)
+            @Html.HiddenFor(model => model.ShipRegion)
+            @Html.HiddenFor(model => model.ShippedDate)
+            @Html.HiddenFor(model => model.ShipPostalCode)
+            @Html.HiddenFor(model => model.ShipCountry)
+
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label>Change Employee</label>
+                </div>
+                @*@Html.EditorFor(model => model.EmployeeID)*@
+                <div class="col-sm-3">
+                    @*@Html.DropDownList("EmployeeID", String.Empty)*@
+                    @Html.DropDownList("EmployeeID",
+                                       new SelectList(ViewBag.EmployeeID, "EmployeeID", "LastName", Model.EmployeeID), new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(model => model.EmployeeID)
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label>Change Shipper</label>
+                </div>
+                @*@Html.EditorFor(model => model.ShipVia)*@
+                @*@Html.DropDownList("ShipperID", String.Empty)*@
+                <div class="col-sm-3">
+                    @Html.DropDownList("ShipperID",
+                                       new SelectList(ViewBag.ShipperID, "ShipperID", "CompanyName", Model.Shipper.ShipperID), new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(model => model.ShipVia)
+            </div>
+            
+            <p>
+                <input type="submit" class="btn btn-sm btn-success" />
+            </p>
+        </form>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Back To All Orders", "Index","Home",new {@class="btn btn-sm btn-primary"})
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

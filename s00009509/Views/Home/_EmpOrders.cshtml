@@ -1,105 +1,54 @@
-﻿@model IEnumerable<s00009509.Order>
+﻿@model PagedList.IPagedList<s00009509.Order>
+@using PagedList
+@using PagedList.Mvc;
 
 
-<table class="table table-hover table-striped">
+<table class="table table-bordered table-responsive table-striped table-hover">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CustomerID)
+        <th>Order ID
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmployeeID)
+        <th>Customer ID
         </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.OrderDate)*@
-            Shipping Details
+        <th>Shipping Details
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.RequiredDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShippedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShipVia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Freight)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShipName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShipAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShipCity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShipRegion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShipPostalCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShipCountry)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.Customer.ContactName)
+        <th>Contact Name
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeID)
-        </td>
-        <td style="width: 432px; white-space: nowrap; overflow:auto; display:inline-block">
-            @*@Html.DisplayFor(modelItem => item.OrderDate)*@
-            @{Html.RenderPartial("_ShippDetails", item);}
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.RequiredDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShippedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShipVia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Freight)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShipName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShipAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShipCity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShipRegion)
-        </td>*@
-        @*<td>
-            @Html.DisplayFor(modelItem => item.ShipPostalCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShipCountry)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer.ContactName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        
+        <tr id="@item.EmployeeID" onclick="getEmpDetails(@item.EmployeeID)" style="cursor:pointer">
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerID)
+            </td>
+            <td id="tcell" class="cell" title="@String.Format("Order Date: {0}, Required Date {1},  Shipped Date: {2}," +
+                                                              " Via: {3}, Name: {4}, Address: {5}, City: {6}, Region: {7}," +
+                                                              " Country: {8}, Postal Code: {9}",
+                                                              item.OrderDate, item.RequiredDate, item.ShippedDate,
+                                                              item.Shipper.CompanyName, item.ShipName, item.ShipAddress,
+                                                              item.ShipCity, item.ShipRegion, item.ShipCountry, item.ShipPostalCode)">
+                @{Html.RenderPartial("_ShippDetails", item);}
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.ContactName)
+            </td>
+            <td class="form-inline" role="form">
+                @Html.ActionLink("Edit", "Edit", new { id = item.OrderID }, new { @class = "btn btn-primary btn-info btn-xs" }) |
+                <button id="deleteOrder" onclick="deleteO(@item.OrderID)" class="btn btn-primary btn-warning btn-xs">Delete</button>
+            </td>
+        </tr>
+    }
 
 </table>
+
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("EmpIndex", new { employeeId = @ViewBag.empID, page = page }),
+        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions { UpdateTargetId = "OrderList" }))
