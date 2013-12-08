@@ -4,6 +4,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "s00009509", "s00009509\s00009509.csproj", "{9D5D8232-38FD-459F-A2AD-F592E232BE7B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1FE81F29-07AB-4DEC-833A-154F6DCB85B1}"
+	ProjectSection(SolutionItems) = preProject
+		..\allorders.png = ..\allorders.png
+		..\deletecon.png = ..\deletecon.png
+		..\edit.png = ..\edit.png
+		..\empdetails.png = ..\empdetails.png
+		README.md = README.md
+		..\tooltip.png = ..\tooltip.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
