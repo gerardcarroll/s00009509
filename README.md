@@ -1,4 +1,4 @@
-## RAD 301 CA1 MVC Bootstrap App
+## RAD 301 CA2 MVC Bootstrap App
 
 **Submission Date 09/12/2013**
 
