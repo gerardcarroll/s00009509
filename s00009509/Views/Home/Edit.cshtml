@@ -37,8 +37,7 @@ Form Will only allow to edit the Employee and Shipper Fields via dropdownlists
                     <label>Change Employee</label>
                 </div>
                 <div class="col-sm-3">
-                    @Html.DropDownListFor(model => model.Employee, new SelectList(ViewBag.Employee, "EmployeeID", "LastName"),
-                                            new {@class = "form-control"})
+                    @Html.DropDownListFor(model => model.EmployeeID, new SelectList(ViewBag.Employee, "EmployeeID", "LastName"), new {@class = "form-control"})
                 </div>
                 @Html.ValidationMessageFor(model => model.EmployeeID)
             </div>

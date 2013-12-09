@@ -41,7 +41,7 @@ namespace s00009509.Controllers
         }
 
 
-
+        //selected employee orders
         public ActionResult EmpIndex(int? employeeId, int? page)
         {
             // setup PagedList settings
@@ -55,7 +55,7 @@ namespace s00009509.Controllers
             if (e1 != null)
             {
                 var q = db.Employees.Find(employeeId);
-                ViewBag.Title = "Orders By " + q.FirstName + " " + q.LastName;
+                ViewBag.Top = "Orders By " + q.FirstName + " " + q.LastName;
                 
                 //to display orders for the particular employee
                 return PartialView("_EmpOrders", e1.ToPagedList(pageNumber, pageSize));
