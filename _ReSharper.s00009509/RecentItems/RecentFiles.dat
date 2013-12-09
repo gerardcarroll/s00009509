@@ -4,28 +4,28 @@
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/f:Nwind.Context.cs" caret="1386" fromTop="24" />
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/f:Shipper.cs" caret="543" fromTop="14" />
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:App_Start/f:BundleConfig.cs" caret="1419" fromTop="22" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:_EmpDetails.cshtml" caret="705" fromTop="22" />
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:_EmpOrders.cshtml" caret="1530" fromTop="35" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:_Delete.cshtml" caret="1190" fromTop="24" />
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Content/f:Custom.css" caret="219" fromTop="17" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:Edit.cshtml" caret="486" fromTop="20" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:Index.cshtml" caret="208" fromTop="11" />
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:_ShippDetails.cshtml" caret="503" fromTop="11" />
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Shared/f:_Layout.cshtml" caret="0" fromTop="0" />
     <File id="1FE81F29-07AB-4DEC-833A-154F6DCB85B1/f:README.md/s:..?README.md" caret="14" fromTop="0" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Controllers/f:HomeController.cs" caret="991" fromTop="25" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:Index.cshtml" caret="0" fromTop="0" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:_Delete.cshtml" caret="0" fromTop="0" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:_EmpDetails.cshtml" caret="60" fromTop="2" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:Edit.cshtml" caret="1420" fromTop="3" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Controllers/f:HomeController.cs" caret="2210" fromTop="34" />
   </RecentFiles>
   <RecentEdits>
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:App_Start/f:BundleConfig.cs" caret="1419" fromTop="22" />
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:_ShippDetails.cshtml" caret="387" fromTop="6" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:_EmpDetails.cshtml" caret="1198" fromTop="39" />
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:_EmpOrders.cshtml" caret="2331" fromTop="41" />
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:_Delete.cshtml" caret="1190" fromTop="24" />
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:Index.cshtml" caret="208" fromTop="11" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:Edit.cshtml" caret="1598" fromTop="33" />
-    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Controllers/f:HomeController.cs" caret="4301" fromTop="29" />
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Content/f:Custom.css" caret="219" fromTop="17" />
     <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Shared/f:_Layout.cshtml" caret="1710" fromTop="26" />
     <File id="1FE81F29-07AB-4DEC-833A-154F6DCB85B1/f:README.md/s:..?README.md" caret="14" fromTop="0" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:_EmpDetails.cshtml" caret="60" fromTop="2" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Views/d:Home/f:Edit.cshtml" caret="1420" fromTop="6" />
+    <File id="9D5D8232-38FD-459F-A2AD-F592E232BE7B/d:Controllers/f:HomeController.cs" caret="2213" fromTop="16" />
   </RecentEdits>
 </RecentFiles>

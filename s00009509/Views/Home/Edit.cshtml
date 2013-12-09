@@ -36,11 +36,9 @@ Form Will only allow to edit the Employee and Shipper Fields via dropdownlists
                 <div class="col-sm-10">
                     <label>Change Employee</label>
                 </div>
-                @*@Html.EditorFor(model => model.EmployeeID)*@
                 <div class="col-sm-3">
-                    @*@Html.DropDownList("EmployeeID", String.Empty)*@
-                    @Html.DropDownList("EmployeeID",
-                                       new SelectList(ViewBag.EmployeeID, "EmployeeID", "LastName", Model.EmployeeID), new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.Employee, new SelectList(ViewBag.Employee, "EmployeeID", "LastName"),
+                                            new {@class = "form-control"})
                 </div>
                 @Html.ValidationMessageFor(model => model.EmployeeID)
             </div>
@@ -49,11 +47,9 @@ Form Will only allow to edit the Employee and Shipper Fields via dropdownlists
                 <div class="col-sm-10">
                     <label>Change Shipper</label>
                 </div>
-                @*@Html.EditorFor(model => model.ShipVia)*@
-                @*@Html.DropDownList("ShipperID", String.Empty)*@
                 <div class="col-sm-3">
-                    @Html.DropDownList("ShipperID",
-                                       new SelectList(ViewBag.ShipperID, "ShipperID", "CompanyName", Model.Shipper.ShipperID), new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.ShipVia, new SelectList(ViewBag.Shipper, "ShipperID", "CompanyName"),
+                                            new {@class = "form-control"})
                 </div>
                 @Html.ValidationMessageFor(model => model.ShipVia)
             </div>

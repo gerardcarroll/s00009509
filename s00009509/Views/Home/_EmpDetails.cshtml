@@ -1,6 +1,6 @@
 ﻿@model s00009509.Employee
 
-
+@*Check if Reports To is null*@
 @{
     string s = "";
     s = Model.ReportsTo != null ? String.Format("{0} {1}", Model.Employee1.FirstName, Model.Employee1.LastName) : String.Format("N/A");

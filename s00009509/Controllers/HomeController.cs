@@ -71,9 +71,10 @@ namespace s00009509.Controllers
         public ActionResult Edit(int id)
         {
             Order order = db.Orders.Find(id);
+
+            ViewBag.Employee = db.Employees.Select(e => new { e.EmployeeID, e.LastName }).Distinct().ToList();
             
-            ViewBag.EmployeeID = db.Employees.Select(e => new {e.LastName, e.EmployeeID }).Distinct().ToList();
-            ViewBag.ShipperID = db.Shippers.Select(s => new {s.CompanyName, s.ShipperID }).Distinct().ToList();
+            ViewBag.Shipper = db.Shippers.Select(s => new { s.ShipperID, s.CompanyName }).Distinct().ToList();
             
             return (order == null) ? View() : View(order);
         }
@@ -92,9 +93,6 @@ namespace s00009509.Controllers
                 return RedirectToAction("Index");
             }
             
-            ViewBag.EmpList = new SelectList(db.Employees, "EmployeeID", "LastName", order.EmployeeID);
-            ViewBag.ShipList = new SelectList(db.Shippers, "ShipId", "ShipName", order.Shipper.ShipperID);
-
             return View(order);
         }
 
