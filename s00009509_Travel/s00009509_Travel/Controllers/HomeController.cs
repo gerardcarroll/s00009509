@@ -10,11 +10,16 @@ namespace s00009509_Travel.Controllers
 {    
     public class HomeController : Controller
     {
-        TravelContext db = new TravelContext();
+        private ITravelRepository _repo;
+
+        public HomeController(ITravelRepository repo)
+        {
+            _repo = repo;
+        }
         public ActionResult Index()
         {
-            //var q = db.Trips.Find(1);
-            //string name = q.Name;
+            int i = 0;
+            i = _repo.GetAllTrips().Count();
             return View();
         }
 
@@ -30,6 +35,12 @@ namespace s00009509_Travel.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _repo.Dispose();
+            base.Dispose(disposing);
         }
     }
 }
