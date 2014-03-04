@@ -6,18 +6,19 @@ namespace s00009509_Travel.Migrations
     using System.Linq;
     using s00009509_Travel.Models;
     using System.Collections.Generic;
+    using s00009509_Travel.DAL;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<s00009509_Travel.DAL.TravelContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<TravelContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            //AutomaticMigrationsEnabled = false;
             ContextKey = "s00009509_Travel.DAL.TravelContext";
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(s00009509_Travel.DAL.TravelContext db)
+        protected override void Seed(TravelContext db)
         {
             //  This method will be called after migrating to the latest version.
 
@@ -33,15 +34,12 @@ namespace s00009509_Travel.Migrations
             //
 
             //Add Initial Data Here
-            var trips = new List<Trip>
-            {
-                new Trip{Name = "Space Odyssey", StartDate = DateTime.Now.AddDays(10), FinishDate = DateTime.Now.AddDays(30), MinGuests = 5},
-                new Trip{Name = "There And Back", StartDate = Convert.ToDateTime("10/04/2014"), FinishDate = Convert.ToDateTime("10/04/2014").AddDays(20), MinGuests = 3}
-
-            };
-
-            trips.ForEach(t => db.Trips.Add(t));
-            db.SaveChanges();
+            db.Trips.AddOrUpdate(
+                t => t.Name,
+                new Trip { Name = "Space Odyssey", StartDate = DateTime.Now.AddDays(10), FinishDate = DateTime.Now.AddDays(30), MinGuests = 5},
+                new Trip { Name = "There And Back", StartDate = Convert.ToDateTime("10/04/2014"), FinishDate = Convert.ToDateTime("10/04/2014").AddDays(20), MinGuests = 3 }
+                );
+            
         }
     }
 }
