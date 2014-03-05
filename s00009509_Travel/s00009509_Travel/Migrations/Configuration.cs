@@ -33,13 +33,19 @@ namespace s00009509_Travel.Migrations
             //    );
             //
 
-            //Add Initial Data Here
+            //Add Initial Trip Data Here
             db.Trips.AddOrUpdate(
                 t => t.Name,
                 new Trip { Name = "Space Odyssey", StartDate = DateTime.Now.AddDays(10), FinishDate = DateTime.Now.AddDays(30), MinGuests = 5},
-                new Trip { Name = "There And Back", StartDate = Convert.ToDateTime("10/04/2014"), FinishDate = Convert.ToDateTime("10/04/2014").AddDays(20), MinGuests = 3 }
+                new Trip { Name = "There And Back", StartDate = Convert.ToDateTime("10/04/2014"), FinishDate = Convert.ToDateTime("10/04/2014").AddDays(10), MinGuests = 3 }
                 );
-            
+
+            db.Legs.AddOrUpdate(
+                l => l.StartLocation,
+                new Leg { StartLocation = "Sligo", FinishLocation = "New York", TripID = 25, StartDate = DateTime.Now.AddDays(10), FinishDate = DateTime.Now.AddDays(15) },
+                new Leg { StartLocation = "Dublin", FinishLocation = "London", TripID = 26, StartDate = Convert.ToDateTime("10/04/2014"), FinishDate = Convert.ToDateTime("10/04/2014").AddDays(10) }
+                );
+
         }
     }
 }
