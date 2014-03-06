@@ -1,6 +1,6 @@
 using s00009509_Travel.DAL;
 using System.Web.Http;
-using System.Web.Http.Common;
+using System.Web.Http.Dependencies;
 using Ninject.Syntax;
 using Ninject.Web.Mvc;
 
@@ -16,8 +16,59 @@ namespace s00009509_Travel.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    
 
+    public class NinjectDependencyScope : IDependencyScope
+    {
+        IResolutionRoot resolver;
+
+        public NinjectDependencyScope(IResolutionRoot resolver)
+        {
+            this.resolver = resolver;
+        }
+
+        public object GetService(Type serviceType)
+        {
+            if (resolver == null)
+                throw new ObjectDisposedException("this", "This scope has been disposed");
+
+            return resolver.TryGet(serviceType);
+        }
+
+        public System.Collections.Generic.IEnumerable<object> GetServices(Type serviceType)
+        {
+            if (resolver == null)
+                throw new ObjectDisposedException("this", "This scope has been disposed");
+
+            return resolver.GetAll(serviceType);
+        }
+
+        public void Dispose()
+        {
+            IDisposable disposable = resolver as IDisposable;
+            if (disposable != null)
+                disposable.Dispose();
+
+            resolver = null;
+        }
+    }
+
+    // This class is the resolver, but it is also the global scope
+    // so we derive from NinjectScope.
+    public class NinjectDependencyResolver : NinjectDependencyScope, IDependencyResolver
+    {
+        IKernel kernel;
+
+        public NinjectDependencyResolver(IKernel kernel)
+            : base(kernel)
+        {
+            this.kernel = kernel;
+        }
+
+        public IDependencyScope BeginScope()
+        {
+            return new NinjectDependencyScope(kernel.BeginBlock());
+        }
+    }
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -51,6 +102,10 @@ namespace s00009509_Travel.App_Start
             kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
             
             RegisterServices(kernel);
+
+            // Install our Ninject-based IDependencyResolver into the Web API config
+            GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
+
             return kernel;
         }
 
@@ -60,7 +115,9 @@ namespace s00009509_Travel.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<ITravelRepository>().To<TravelRepository>().InRequestScope();            
+            kernel.Bind<ITravelRepository>().To<TravelRepository>().InRequestScope();
+            // Install our Ninject-based IDependencyResolver into the Web API config
+            GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
         }        
     }
 }
