@@ -12,9 +12,9 @@ namespace s00009509_Travel.Models
         public String FinishLocation { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime FinishDate { get; set; }
-
         public int TripID { get; set; }
 
         public virtual ICollection<Guest> Guests { get; set; }
+        public virtual Trip Trip { get; set; }
     }
 }

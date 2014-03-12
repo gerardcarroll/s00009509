@@ -20,7 +20,7 @@ namespace s00009509_Travel.Controllers
         {
             int i = 0;
             i = _repo.GetAllTrips().Count();
-            return View();
+            return View(_repo.GetAllTrips());
         }
 
         public ActionResult About()

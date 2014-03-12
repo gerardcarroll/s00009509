@@ -21,6 +21,11 @@ namespace s00009509_Travel.DAL
             return _ctx.Trips.OrderBy(t => t.Name);
         }
 
+        public IQueryable<Leg> GetLegsForTrip(int id)
+        {
+            return _ctx.Legs.Where(l => l.TripID == id);
+        }
+
         public void Dispose()
         {
             _ctx.Dispose();

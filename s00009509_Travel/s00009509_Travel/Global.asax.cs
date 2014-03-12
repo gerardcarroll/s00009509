@@ -18,6 +18,7 @@ namespace s00009509_Travel
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             WebApiConfig.Register(GlobalConfiguration.Configuration);
+                        
         }
     }
 }
