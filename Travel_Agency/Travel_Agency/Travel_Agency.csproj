@@ -178,7 +178,6 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LegsController.cs" />
-    <Compile Include="Controllers\TripController.cs" />
     <Compile Include="Controllers\TripsController.cs" />
     <Compile Include="DAL\ITravelRepository.cs" />
     <Compile Include="DAL\TravelContext.cs" />
