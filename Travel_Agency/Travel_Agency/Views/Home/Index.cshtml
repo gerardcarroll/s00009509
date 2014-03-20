@@ -4,6 +4,22 @@
     ViewBag.Title = "Index";
 }
 
+@section scripts
+{
+    <script>
+    function getLegs(TripId) {
+
+        $.ajax({
+            url: '@Url.Action("GetLegs", "Legs")',
+            data: { id: TripId },
+            success: function (data) {
+                $("#legsTbl").html(data);
+            }
+        })
+    }
+    </script>
+}
+
 <h2>Index</h2>
 
 <p>
@@ -58,18 +74,3 @@
 
 </div>
 
-@section scripts 
-{
-<script>
-    function getLegs(TripId) {
-
-        $.ajax({
-            url: '@Url.Action("GetLegs", "Legs")',
-            data: { id: TripId },
-            success: function (data) {
-                $("#legsTbl").html(data);
-            }
-        })
-    }
-</script>
-}

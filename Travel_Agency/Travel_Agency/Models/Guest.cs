@@ -9,5 +9,6 @@ namespace Travel_Agency.Models
     {
         public int ID { get; set; }
         public String FirstName { get; set; }
+        public virtual ICollection<Leg> Legs { get; set; }
     }
 }

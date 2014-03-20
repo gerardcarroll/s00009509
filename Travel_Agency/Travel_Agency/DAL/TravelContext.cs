@@ -13,10 +13,11 @@ namespace Travel_Agency.DAL
         public DbSet<Trip> Trips { get; set; }
         public DbSet<Leg> Legs { get; set; }
         public DbSet<Guest> Guests { get; set; }
+        
 
         public TravelContext() : base("TravelContext")
         {            
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<TravelContext, Configuration>());
+            
         }
     }
     

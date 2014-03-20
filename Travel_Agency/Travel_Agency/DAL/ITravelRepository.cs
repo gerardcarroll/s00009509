@@ -10,6 +10,6 @@ namespace Travel_Agency.DAL
     public interface ITravelRepository:IDisposable
     {
         IQueryable<Trip> GetAllTrips();
-        IQueryable<Leg> GetLegsForTrip(int id);
+        IQueryable<Leg> GetLegsForTrip(int id);        
     }
 }

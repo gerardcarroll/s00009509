@@ -13,18 +13,18 @@ namespace Travel_Agency.DAL
 
         public TravelRepository()
         {
-            _ctx = new TravelContext();
+            _ctx = new TravelContext();            
         }
 
         public IQueryable<Trip> GetAllTrips()
         {
-            return _ctx.Trips.OrderBy(t => t.Name);
+            return _ctx.Trips.OrderBy(t => t.StartDate);
         }
 
         public IQueryable<Leg> GetLegsForTrip(int id)
         {
             return _ctx.Legs.Where(l => l.TripID == id);
-        }
+        }        
 
         public void Dispose()
         {
