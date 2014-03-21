@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Travel_Agency.Models.Trip>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = " Available Trips";
 }
 
 @section scripts
@@ -20,7 +20,6 @@
     </script>
 }
 
-<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New Trip", "Create")
@@ -52,10 +51,10 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
+            @Html.DisplayFor(modelItem => item.StartDate, "ShortDateTime")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FinishDate)
+            @Html.DisplayFor(modelItem => item.FinishDate, "ShortDateTime")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.MinGuests)

@@ -43,10 +43,10 @@
                     @Html.DisplayFor(modelItem => item.FinishLocation)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.StartDate)
+                    @Html.DisplayFor(modelItem => item.StartDate, "ShortDateTime")
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FinishDate)
+                    @Html.DisplayFor(modelItem => item.FinishDate, "ShortDateTime")
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
