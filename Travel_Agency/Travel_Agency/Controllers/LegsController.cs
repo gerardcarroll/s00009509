@@ -21,7 +21,16 @@ namespace s00009509_Travel.Controllers
         // GET api/legs/5
         public ActionResult GetLegs(int id)
         {
+            ViewBag.tripname = _repo.GetTripName(id);
+            ViewBag.tripId = id;
             return PartialView("_TripLeg", _repo.GetLegsForTrip(id));
+        }
+
+        [HttpGet]
+        public ActionResult Create(int id)
+        {
+            ViewBag.TripID = id; 
+            return PartialView("_CreateLeg");
         }
 
     }

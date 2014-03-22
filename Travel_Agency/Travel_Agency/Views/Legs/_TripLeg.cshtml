@@ -1,65 +1,102 @@
 ﻿@model IEnumerable<Travel_Agency.Models.Leg>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
+@{
+    Nullable<DateTime> endOfLastLeg = null;
+    bool ok = true;
+    int legCount = 0;    
+}
 @if (Model.Any())
-{    
-    <table class="table">
+{
+    <div id="loader1" class="text-center" style="display: none;">
+        Loading...<img src="~/Images/ajax-loading.gif" />
+    </div>
+    <table class="table table-bordered table-condensed">
         <tr>
             <th>
                 Start Location
-                @*@Html.DisplayNameFor(model => model.StartLocation)*@
             </th>
             <th>
                 Finish Location
-                @*@Html.DisplayNameFor(model => model.FinishLocation)*@
             </th>
             <th>
-                Start Date
-                @*@Html.DisplayNameFor(model => model.StartDate)*@
-            </th>
-            <th>
-                Finish Date
-                @*@Html.DisplayNameFor(model => model.FinishDate)*@
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.TripID)
-                </th>*@
+                Guests
+            </th>            
             <th></th>
         </tr>
-
         @foreach (var item in Model)
-        {
-            <tr>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.Trip.Name)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartLocation)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FinishLocation)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartDate, "ShortDateTime")
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FinishDate, "ShortDateTime")
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>
-            </tr>
-        }
+        {            
+            legCount ++;
+            if (endOfLastLeg == null)
+            {
+                endOfLastLeg = item.Trip.StartDate.Date;
+            }//end if
 
+            if (!ok)
+            {
+                endOfLastLeg = item.StartDate.Date;
+            }
+            
+
+            if (item.StartDate.Date != endOfLastLeg && item.FinishDate.Date < item.Trip.FinishDate.Date && item.Trip.Legs.Count == legCount)
+            {
+                Html.RenderPartial("_EmptyLeg");
+                ok = false; 
+            }//end if
+                
+            else if (legCount == Model.Count() && item.FinishDate.Date == item.Trip.FinishDate.Date && item.StartDate.Date != endOfLastLeg.Value.Date)
+            {
+                Html.RenderPartial("_EmptyLeg");
+                Html.RenderPartial("_LegOk", item);		        
+	        }
+                
+            else if (item.StartDate.Date != endOfLastLeg && item.FinishDate.Date < item.Trip.FinishDate.Date && legCount < item.Trip.Legs.Count)
+            {
+                Html.RenderPartial("_EmptyLeg");
+                Html.RenderPartial("_LegOk", item);                
+	        }
+                                    
+            else 
+            {
+                Html.RenderPartial("_LegOk", item); 
+            }//end else
+
+            if (legCount == Model.Count() && item.FinishDate.Date != item.Trip.FinishDate.Date)
+            {
+                Html.RenderPartial("_EmptyLeg");
+                ok = false;
+            }
+            
+            if (ok)
+            {
+                endOfLastLeg = item.FinishDate.AddDays(1).Date;
+            }
+            
+
+        }@*end foreach*@
     </table>
 }
-
-else
+else //if the trip has no legs
 {
-    <script>alert("This Trip has no Legs");</script>
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <th>
+                Start Location
+            </th>
+            <th>
+                Finish Location
+            </th>
+            <th>
+                Guests
+            </th>            
+            <th></th>
+        </tr>
+        <tr>
+            @{Html.RenderPartial("_EmptyLeg");}
+        </tr>
+        </table>
 }
+
+
+    <script>
+        $("#legName").text("Legs For: " + '@ViewBag.tripname');
+    </script>
+

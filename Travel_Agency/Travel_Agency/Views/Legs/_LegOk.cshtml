@@ -1,0 +1,103 @@
+﻿@model Travel_Agency.Models.Leg
+
+@section scripts{
+
+    @*<script>
+        function AddGuests(id) {
+            alert("got in");
+            $.ajax({
+                url: '@Url.Action("AddGuests", "Guest")',
+                data: { legid: id },
+                success: function (data) {
+                    alert(data);
+                }
+
+            });
+        }
+    </script>*@
+}
+
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => Model.StartLocation)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.FinishLocation)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.Guests.Count)
+    </td>
+    <td>
+        <button class="btn btn-primary btn-xs" onclick="AddGuests(@Model.ID)">Add Guests</button> | 
+        <button class="btn btn-primary btn-xs" onclick="GetLegDetails(@Model.ID)">View Details</button>        
+    </td>
+</tr>
+<script>
+    function AddGuests(id) {
+
+        $("#guestModal").empty();
+        $('<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel">Add Guest To Leg</h4></div><div class="modal-body">Dropdown here<select id="guestList"></select></div><div class="modal-footer"><form class="form-inline" role="form"><div class="form-group"><button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button></div><div class="form-group">Button To Confirm</div></form></div></div></div></div>').appendTo($('#guestModal'));
+
+        $.ajax({
+            url: 'http://localhost:49775/api/Guest',
+            success: function (data) {
+                for (i = 0; i < data.length; i++) {
+                    $('<option>' + data[i].FirstName + '</option>').appendTo($('#guestList'))
+                }
+                $('#myModal').modal('show'); 
+            }
+        });
+
+        //get all guests from db
+        //var guestCollection = [];
+        //$.getJSON('http://localhost:49775/api/Guest')
+        //.done(function (data) {
+        //    for (i = 0; i < data.length; i++) {
+        //        guestCollection.push(data[i].FirstName);
+        //    }
+            //$.each(data, function (index, data) {
+            //    //alert(data.FirstName);
+            //    guestCollection.push(data.FirstName);
+            //});
+            //alert(guestCollection);
+        //});
+
+        
+
+        //$.getJSON('http://localhost:49775/api/Guest?legid=' + id)
+        //.done(function (data) {
+        //    $.each(data, function (index, data) {
+        //        $('<option>' + data.Guest.FirstName + '</option>').appendTo($('#guestList'))
+        //    })
+        //    $('#myModal').modal('show');
+        //    //alert(data.Guests[0].FirstName);
+        //});
+
+    }
+</script>
+
+@*<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Add Guest To Leg</h4>
+            </div>
+            <div class="modal-body">*@
+                @*DropdownList with guests
+                <br />
+                Do you want to continue?
+            </div>
+            <div class="modal-footer">
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+                    <div class="form-group">
+                        Button To Confirm
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>*@

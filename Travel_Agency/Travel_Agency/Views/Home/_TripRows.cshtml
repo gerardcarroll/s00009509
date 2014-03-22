@@ -1,0 +1,19 @@
+﻿@model Travel_Agency.Models.Trip
+
+<td>
+    @Html.DisplayFor(modelItem => Model.Name)
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.StartDate, "ShortDateTime")
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.FinishDate, "ShortDateTime")
+</td>
+<td>
+    @Html.DisplayFor(modelItem => Model.MinGuests)
+</td>
+<td>
+    <button onclick="GetLegs(@Model.ID)" class="btn btn-xs btn-info">View Legs</button>
+    @*@Html.ActionLink("View Legs", "GetLegs", "Legs", new { id = Model.ID }, new { @class = "btn btn-xs btn-info" })*@
+</td>   
+

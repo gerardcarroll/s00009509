@@ -178,7 +178,9 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\GuestController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LegApiController.cs" />
     <Compile Include="Controllers\LegsController.cs" />
+    <Compile Include="Controllers\TripApiController.cs" />
     <Compile Include="Controllers\TripsController.cs" />
     <Compile Include="DAL\ITravelRepository.cs" />
     <Compile Include="DAL\TravelContext.cs" />
@@ -186,9 +188,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201403202022127_LegChanges.cs" />
-    <Compile Include="Migrations\201403202022127_LegChanges.Designer.cs">
-      <DependentUpon>201403202022127_LegChanges.cs</DependentUpon>
+    <Compile Include="Migrations\201403211108247_Initial.cs" />
+    <Compile Include="Migrations\201403211108247_Initial.Designer.cs">
+      <DependentUpon>201403211108247_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201403220059114_updated.cs" />
+    <Compile Include="Migrations\201403220059114_updated.Designer.cs">
+      <DependentUpon>201403220059114_updated.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Guest.cs" />
@@ -202,6 +208,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datepicker.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -273,6 +280,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Images\ajax-loading.gif" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
@@ -290,6 +299,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\modaldialog.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -321,6 +331,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Legs\_TripLeg.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ShortDateTime.cshtml" />
+    <Content Include="Views\Home\_Trips.cshtml" />
+    <Content Include="Views\Home\_TripRows.cshtml" />
+    <Content Include="Views\Legs\_EmptyLeg.cshtml" />
+    <Content Include="Views\Legs\_LegOk.cshtml" />
+    <Content Include="Views\Trips\_CreateTrip.cshtml" />
+    <Content Include="Views\Legs\_CreateLeg.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -329,8 +345,11 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201403202022127_LegChanges.resx">
-      <DependentUpon>201403202022127_LegChanges.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201403211108247_Initial.resx">
+      <DependentUpon>201403211108247_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201403220059114_updated.resx">
+      <DependentUpon>201403220059114_updated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

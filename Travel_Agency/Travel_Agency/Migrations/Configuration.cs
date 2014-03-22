@@ -12,11 +12,12 @@ namespace Travel_Agency.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;            
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Travel_Agency.DAL.TravelContext db)
         {
+            
             //Add Seed Trip Data Here
             db.Trips.AddOrUpdate(
                 t => t.ID,
@@ -142,5 +143,7 @@ namespace Travel_Agency.Migrations
             if (guest == null)
                 leg.Guests.Add(db.Guests.Single(g => g.ID == guestId));
         }
+    
+        
     }
 }

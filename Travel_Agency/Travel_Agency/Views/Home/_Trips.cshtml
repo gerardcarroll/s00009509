@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Travel_Agency.Models.Trip>
+
+<table class="table table-condensed table-bordered">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Start Date
+        </th>
+        <th>
+            Finish Date
+        </th>
+        <th>
+            Min Guests
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+
+        if (item.Viable && item.Complete)
+        {            
+            <tr class="success" onclick="getLegs(@item.ID)">
+                @{Html.RenderPartial("_TripRows", item);}                
+            </tr>
+        }
+        else if (!item.Viable && !item.Complete)
+        {
+            <tr class="danger" onclick="getLegs(@item.ID)">
+                @{Html.RenderPartial("_TripRows", item);}                
+            </tr>
+        }
+        else
+        {
+            <tr class="warning" onclick="getLegs(@item.ID)">
+                @{Html.RenderPartial("_TripRows", item);}                
+            </tr>
+        }
+
+    }
+</table>
+
+<button onclick="AddTrip()" class="btn btn-primary" >Add Trip</button>

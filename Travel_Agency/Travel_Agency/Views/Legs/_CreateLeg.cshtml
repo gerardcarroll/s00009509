@@ -1,0 +1,95 @@
+﻿@model Travel_Agency.Models.Leg
+
+@{
+    int tripId = ViewBag.TripID;
+}
+
+<div class="modal fade" id="legModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Create New Leg</h4>
+            </div>
+            <div class="modal-body">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StartLocation)
+                    @Html.TextBoxFor(model => model.StartLocation, new { @class = "input-lg form-control", placeholder = "Start Location" })
+                    @Html.ValidationMessageFor(model => model.StartLocation, null, new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FinishLocation)
+                    @Html.TextBoxFor(model => model.FinishLocation, new { @class = "form-control ", placeholder = "Finish Location"})
+                    @Html.ValidationMessageFor(model => model.FinishLocation, null, new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StartDate)
+                    @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control ", placeholder = "dd/mm/yyyy", onclick = "pickDate()" })
+                    @Html.ValidationMessageFor(model => model.StartDate, null, new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FinishDate)
+                    @Html.TextBoxFor(model => model.FinishDate, new { @class = "form-control ", placeholder = "dd/mm/yyyy", onclick = "pickDate()" })
+                    @Html.ValidationMessageFor(model => model.FinishDate, null, new { @class = "text-danger" })
+                </div>                
+            </div>
+            <div id="error" style="visibility:hidden; color:red;">
+                <h4>Error Creating New Leg</h4>
+            </div>
+            <div class="modal-footer">
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+                    <div class="form-group">
+                        <button id="createL" class="btn btn-primary ">
+                            <i class="glyphicon glyphicon-plus-sign"></i> Create
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<script>
+    $(function () {
+
+        //$("#createL").click(function () {            
+        //    var newLeg = {
+        //        StartLocation: $("#StartLocation").val(),
+        //        FinishLocation: $("#FinishLocation").val(),
+        //        StartDate: $("#StartDate").val(),
+        //        FinishDate: $("#FinishDate").val(),
+        //        TripId: tripId
+        //    };
+        //    sendLeg(newLeg);            
+        //});
+    
+
+        //function pickDate() {
+        //    $('.datepicker').datepicker();
+        //}
+
+        //function sendLeg(l) {
+        //    alert("got in")
+        //    $.ajax({
+        //        url: "api/LegApi/Post",
+        //        data: JSON.stringify(l),
+        //        type: "POST",
+        //        contentType: "application/json;charset=utf-8",
+        //        success: function (data) {
+        //            window.location.href = ("/Home/Index");
+        //        },
+        //        error: function (error) {
+        //        }
+        //    });
+        //}
+    });
+
+</script>

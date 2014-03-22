@@ -18,9 +18,12 @@ namespace Travel_Agency.Controllers
         }
         public ActionResult Index()
         {
-            int i = 0;
-            i = _repo.GetAllTrips().Count();
             return View(_repo.GetAllTrips());
+        }
+
+        public ActionResult Create()
+        {
+            return PartialView("_AddTrip");
         }
 
         public ActionResult About()

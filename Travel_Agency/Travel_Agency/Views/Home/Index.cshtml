@@ -7,69 +7,99 @@
 @section scripts
 {
     <script>
-    function getLegs(TripId) {
+        function GetLegs(TripId) {
+
+            //$("#loader1").css("display", "Block");
 
         $.ajax({
             url: '@Url.Action("GetLegs", "Legs")',
             data: { id: TripId },
             success: function (data) {
-                $("#legsTbl").html(data);
+                $("#tblTripLegs").html(data);
             }
         })
     }
+
+    
+        function AddTrip() {
+            $.ajax({
+                url: '@Url.Action("Create", "Trips")',
+                success: function (data) {
+                    $("#tripCreate").html(data);
+                    $("#tripModal").modal('show');
+                }
+            })
+        }
+
+        function AddLeg(id) {
+            $.ajax({
+                url: '@Url.Action("Create", "Legs")',
+                data: { id : id},
+                success: function (data) {
+                    $("#legCreate").html(data);
+                    $("#legModal").modal('show');
+                }
+            })
+        }
+
+        $("#createL").click(function () {
+            var newLeg = {
+                StartLocation: $("#StartLocation").val(),
+                FinishLocation: $("#FinishLocation").val(),
+                StartDate: $("#StartDate").val(),
+                FinishDate: $("#FinishDate").val(),
+                TripId: tripId
+            };
+            sendLeg(newLeg);
+        });
+
+
+        function pickDate() {
+            $('.datepicker').datepicker();
+        }
+
+        function sendLeg(l) {
+            alert("got in")
+            $.ajax({
+                url: "api/LegApi/Post",
+                data: JSON.stringify(l),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    window.location.href = ("/Home/Index");
+                },
+                error: function (error) {
+                }
+            });
+        }
+    
     </script>
 }
 
 
-<p>
-    @Html.ActionLink("Create New Trip", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Name
-            @*@Html.DisplayNameFor(model => model.Name)*@
-        </th>
-        <th>
-            Start Date
-            @*@Html.DisplayNameFor(model => model.StartDate)*@
-        </th>
-        <th>
-            Finish Date
-            @*@Html.DisplayNameFor(model => model.FinishDate)*@
-        </th>
-        <th>
-            Minimum Guests
-            @*@Html.DisplayNameFor(model => model.MinGuests)*@
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr onclick="getLegs(@item.ID)">
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate, "ShortDateTime")
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FinishDate, "ShortDateTime")
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MinGuests)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
-</table>
-
-<div id="legsTbl">
-
+<div class="page-header">
+    <h1>A Wing And A Prayer Travel</h1>
 </div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong>Available Trips</strong></div>
+            <div class="panel-body" id="tblTrips">
+                @{Html.RenderPartial("_Trips", Model);}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong id="legName">Legs For ....</strong></div>
+            <div class="panel-body" id="tblTripLegs">                
+            </div>
+        </div>
+    </div>    
+</div>
+<div id="guestModal"></div>
+<div id="tripCreate"></div>
+<div id="legCreate"></div>
+
+
 
