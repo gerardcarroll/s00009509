@@ -6,32 +6,32 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">Create New Trip</h4>
-            </div>
-            <div class="modal-body">
+            </div>            
+            <div class="modal-body">            
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)                
                     <div class="form-group">
                         @Html.LabelFor(model => model.Name)
-                        @Html.TextBoxFor(model => model.Name, new { @class = "input-lg form-control", placeholder = "Trip Name" })
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Trip Name" })
                         @Html.ValidationMessageFor(model => model.Name, null, new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.StartDate)
-                        @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control ", placeholder = "dd/mm/yyyy", onclick = "pickDate()" })
+                        @Html.TextBoxFor(model => model.StartDate, new { @class = "startDate form-control ", placeholder = "dd/mm/yyyy", id = "pickStart" })
                         @Html.ValidationMessageFor(model => model.StartDate, null, new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.FinishDate)
-                        @Html.TextBoxFor(model => model.FinishDate, new { @class = "form-control ", placeholder = "dd/mm/yyyy", onclick = "pickDate()" })
+                        @Html.TextBoxFor(model => model.FinishDate, new { @class = "finishDate form-control ", placeholder = "dd/mm/yyyy", id = "pickFinish" })
                         @Html.ValidationMessageFor(model => model.FinishDate, null, new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.MinGuests)
-                        @Html.TextBoxFor(model => model.MinGuests, new { @class = "form-control", placeholder = "Mimimum Guests" })
+                        @Html.TextBoxFor(model => model.MinGuests, new { @class = "form-control", placeholder = "Minimum Guests" })
                         @Html.ValidationMessageFor(model => model.MinGuests, null, new { @class = "text-danger" })
                     </div>                
             </div>
-            <div id="error" style="visibility:hidden; color:red;">
+            <div id="error" class="col-sm-offset-1" style="visibility:hidden; color:red;">
                 <h4>Error Creating New Trip</h4>
             </div>
             <div class="modal-footer">
@@ -45,7 +45,7 @@
                         </button>
                     </div>
                 </form>
-            </div>
+            </div>            
         </div>
         <!-- /.modal-content -->
     </div>
@@ -53,40 +53,46 @@
 </div>
 <!-- /.modal -->
 
+@Scripts.Render("~/bundles/jqueryui")
+
     <script>
         $(function () {
+            $("#error").css('visibility', 'hidden');
+            $('#pickStart').datepicker({ dateFormat: 'mm/dd/yy' });
+            $('#pickFinish').datepicker({ dateFormat: 'mm/dd/yy' });
 
-            $("#createT").click(function () {
-                
-                var newTrip = {
-                    Name: $("#Name").val(),
-                    StartDate: $("#StartDate").val(),
-                    FinishDate: $("#FinishDate").val(),
-                    MinGuests: $("#MinGuests").val()
-                };
-                sendTrip(newTrip);
-            });
 
-            function pickDate() {
-                $('.datepicker').datepicker();
-            }
-
-            function sendTrip(t) {
-                
-                $.ajax({
-                    url: "api/TripApi/Post",
-                    data: JSON.stringify(t),
-                    type: "POST",
-                    contentType: "application/json;charset=utf-8",
-                    success: function (data) {
-                        window.location.href = ("/Home/Index");
-                    },
-                    error: function (error) {
-                    }
+            $("#createT").click(function (e) {
+                e.preventDefault();
+                    var newTrip = {
+                        Name: $("#Name").val(),
+                        StartDate: $("#pickStart").val(),
+                        FinishDate: $("#pickFinish").val(),
+                        MinGuests: $("#MinGuests").val()
+                    };
+                    sendTrip(newTrip);
                 });
 
-            }
+                function sendTrip(t) {
+
+                    $.ajax({
+                        url: "api/TripApi/Post",
+                        data: JSON.stringify(t),
+                        type: "POST",
+                        contentType: "application/json;charset=utf-8",
+                        success: function (result) {
+                            window.location.replace('/Home/Index');                            
+                        },
+
+                        error: function (result) {
+                            $("#error").css('visibility', 'visible');
+                            //toastr.info(' *** ' + error);
+                        }
+                    });
+
+                }
+           
+
         });
-        
-        
     </script>
+

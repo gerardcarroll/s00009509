@@ -17,18 +17,7 @@ namespace Travel_Agency.Controllers
         {
             _repo = repo;
         }
-        // GET api/tripapi
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/tripapi/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
+        
         // POST api/tripapi
         public HttpResponseMessage Post(Trip trip)
         {
@@ -41,15 +30,6 @@ namespace Travel_Agency.Controllers
             }
             throw new HttpResponseException(HttpStatusCode.BadRequest);
         }
-
-        // PUT api/tripapi/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/tripapi/5
-        public void Delete(int id)
-        {
-        }
+                
     }
 }

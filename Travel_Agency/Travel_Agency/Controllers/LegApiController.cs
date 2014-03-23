@@ -17,40 +17,104 @@ namespace Travel_Agency.Controllers
         {
             _repo = repo;
         }
-
-        // GET api/legapi
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/legapi/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
+        
         // POST api/legapi
         public HttpResponseMessage Post(Leg l)
         {
+            bool complete = false;
+
             if (ModelState.IsValid)
             {
-                _repo.AddLeg(l);
-
-                var response = Request.CreateResponse<Leg>(HttpStatusCode.Created, l);
-                return response;
+                if (CheckIfValid(l))
+                {
+                    _repo.AddLeg(l);
+                    complete = CheckIsTripComplete(l);
+                    _repo.UpdateTripComplete(l.TripID, complete);
+                    var response = Request.CreateResponse<Leg>(HttpStatusCode.Created, l);
+                    return response;
+                }
             }
             throw new HttpResponseException(HttpStatusCode.BadRequest);
         }
 
-        // PUT api/legapi/5
-        public void Put(int id, [FromBody]string value)
+        private bool CheckIsTripComplete(Leg l)
         {
+            Trip t = _repo.GetTripById(l.TripID);
+            IQueryable<Leg> legs = _repo.GetLegsForTrip(l.TripID);
+
+            List<DateTime> allLegDates = new List<DateTime>();
+            foreach (Leg i in legs)
+            {
+                DateTime oldLegDate = i.StartDate.Date;
+                while (oldLegDate <= i.FinishDate.Date)
+                {
+                    allLegDates.Add(oldLegDate);
+                    oldLegDate = oldLegDate.AddDays(1).Date;
+                }
+            }
+            DateTime tripDate = t.StartDate.Date;
+            List<DateTime> tripDates = new List<DateTime>();
+            while (tripDate <= t.FinishDate)
+            {
+                tripDates.Add(tripDate);
+                tripDate = tripDate.AddDays(1).Date;
+            }
+            foreach (DateTime dt in tripDates)
+            {
+                if (!allLegDates.Contains(dt))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
-        // DELETE api/legapi/5
-        public void Delete(int id)
+        private bool CheckIfValid(Leg l)
         {
+            Trip t = _repo.GetTripById(l.TripID);
+            IQueryable<Leg> legs = _repo.GetLegsForTrip(l.TripID);
+
+            if (l.StartDate > l.FinishDate)
+            {
+                return false;
+            }
+            else if (l.StartDate.Date < t.StartDate.Date)
+            {
+                return false;
+            }
+            else if (l.FinishDate.Date > t.FinishDate.Date)
+            {
+                return false;
+            }
+
+            List<DateTime> usedDates = new List<DateTime>();
+            foreach (Leg i in legs)
+            {
+                DateTime oldLegDate = i.StartDate.Date;
+                while (oldLegDate <= i.FinishDate.Date)
+                {
+                    usedDates.Add(oldLegDate);
+                    oldLegDate = oldLegDate.AddDays(1).Date;
+                }                
+            }
+
+            DateTime newLegDate = l.StartDate.Date;
+            List<DateTime> newDates = new List<DateTime>();
+            while (newLegDate <= l.FinishDate.Date)
+            {
+                newDates.Add(newLegDate);
+                newLegDate = newLegDate.AddDays(1).Date;
+            }
+            foreach (DateTime dt in newDates)
+            {
+                if (usedDates.Contains(dt))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
+                
     }
 }

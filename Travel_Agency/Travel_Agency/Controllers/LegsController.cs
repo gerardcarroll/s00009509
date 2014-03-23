@@ -7,7 +7,7 @@ using System.Data.Entity;
 using Travel_Agency.DAL;
 using Travel_Agency.Models;
 
-namespace s00009509_Travel.Controllers
+namespace Travel_Agency.Controllers
 {
     public class LegsController : Controller
     {
@@ -20,10 +20,15 @@ namespace s00009509_Travel.Controllers
 
         // GET api/legs/5
         public ActionResult GetLegs(int id)
-        {
+        {            
             ViewBag.tripname = _repo.GetTripName(id);
-            ViewBag.tripId = id;
+            ViewBag.tripId = id;            
             return PartialView("_TripLeg", _repo.GetLegsForTrip(id));
+        }        
+
+        public ActionResult GetDetails(int legid)
+        {
+            return PartialView("_LegDetails", _repo.GetLegById(legid));
         }
 
         [HttpGet]

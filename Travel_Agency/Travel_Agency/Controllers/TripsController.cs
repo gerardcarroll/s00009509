@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using Travel_Agency.DAL;
 using Travel_Agency.Models;
 
-namespace s00009509_Travel.Controllers
+namespace Travel_Agency.Controllers
 {
     public class TripsController : Controller
     {
@@ -23,18 +23,6 @@ namespace s00009509_Travel.Controllers
         {
             return PartialView("_CreateTrip");
         }
-
-        [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public ActionResult CreateTrip(Trip trip)
-        {
-            if (ModelState.IsValid)
-            {
-                _repo.AddTrip(trip);
-                return RedirectToAction("Index");
-            }
-            // if not valid, re-send View with already entered data
-            return PartialView("_CreateTrip", trip);
-        }
+        
     }
 }

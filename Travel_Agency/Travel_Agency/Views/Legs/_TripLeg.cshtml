@@ -2,7 +2,8 @@
 @{
     Nullable<DateTime> endOfLastLeg = null;
     bool ok = true;
-    int legCount = 0;    
+    int legCount = 0;
+    bool gaps = true;  
 }
 @if (Model.Any())
 {
@@ -16,6 +17,12 @@
             </th>
             <th>
                 Finish Location
+            </th>
+            <th>
+                Start Date
+            </th>
+            <th>
+                Finish Date
             </th>
             <th>
                 Guests
@@ -34,9 +41,15 @@
             {
                 endOfLastLeg = item.StartDate.Date;
             }
-            
 
-            if (item.StartDate.Date != endOfLastLeg && item.FinishDate.Date < item.Trip.FinishDate.Date && item.Trip.Legs.Count == legCount)
+            if (item.StartDate.Date != endOfLastLeg && item.FinishDate.Date < item.Trip.FinishDate.Date && item.Trip.Legs.Count == 1)
+            {
+                Html.RenderPartial("_EmptyLeg");
+                Html.RenderPartial("_LegOk", item);
+                gaps = false;
+            }
+
+            else if (item.StartDate.Date != endOfLastLeg && item.FinishDate.Date < item.Trip.FinishDate.Date && item.Trip.Legs.Count == legCount && item.Trip.Legs.Count != 1)
             {
                 Html.RenderPartial("_EmptyLeg");
                 ok = false; 
@@ -45,13 +58,15 @@
             else if (legCount == Model.Count() && item.FinishDate.Date == item.Trip.FinishDate.Date && item.StartDate.Date != endOfLastLeg.Value.Date)
             {
                 Html.RenderPartial("_EmptyLeg");
-                Html.RenderPartial("_LegOk", item);		        
+                Html.RenderPartial("_LegOk", item);
+                gaps = false;	        
 	        }
                 
             else if (item.StartDate.Date != endOfLastLeg && item.FinishDate.Date < item.Trip.FinishDate.Date && legCount < item.Trip.Legs.Count)
             {
                 Html.RenderPartial("_EmptyLeg");
-                Html.RenderPartial("_LegOk", item);                
+                Html.RenderPartial("_LegOk", item);
+                gaps = false;            
 	        }
                                     
             else 
@@ -63,6 +78,7 @@
             {
                 Html.RenderPartial("_EmptyLeg");
                 ok = false;
+                gaps = false; 
             }
             
             if (ok)
@@ -94,9 +110,38 @@ else //if the trip has no legs
         </tr>
         </table>
 }
+<div id="legCreate"></div>
+<div id="guestModal"></div>
 
 
     <script>
+
+        $(document).ready(function () {
+            if ('@Model.Any()' == 'False') {
+                toastr.error('This Trip Has No Legs');
+            }
+            else if ('@gaps' == 'False') {
+                toastr.warning("This Trip Has Gaps");
+            }
+            else {
+                toastr.success('All ' + @legCount + ' Legs Retrieved');
+            }
+            
+        });
+
         $("#legName").text("Legs For: " + '@ViewBag.tripname');
+
+        function AddLeg(id) {            
+            $.ajax({
+                url: '@Url.Action("Create", "Legs")',
+                data: { id: id },
+                success: function (data) {
+                    $("#legCreate").html(data);
+                    $("#legModal").modal('show');
+                }
+            })
+        }
+                
+        
     </script>
 

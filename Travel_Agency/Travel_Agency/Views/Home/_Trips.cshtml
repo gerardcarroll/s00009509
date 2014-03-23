@@ -21,24 +21,41 @@
 
         if (item.Viable && item.Complete)
         {            
-            <tr class="success" onclick="getLegs(@item.ID)">
+            <tr class="success">
                 @{Html.RenderPartial("_TripRows", item);}                
             </tr>
         }
         else if (!item.Viable && !item.Complete)
         {
-            <tr class="danger" onclick="getLegs(@item.ID)">
+            <tr class="danger">
                 @{Html.RenderPartial("_TripRows", item);}                
             </tr>
         }
         else
         {
-            <tr class="warning" onclick="getLegs(@item.ID)">
+            <tr class="warning">
                 @{Html.RenderPartial("_TripRows", item);}                
             </tr>
         }
 
     }
 </table>
+<div class="row">
+    <button onclick="AddTrip()" class="btn btn-primary btn-sm col-sm-2">Add Trip</button>
+    <h6 class="col-sm-2">Trip Viable And Complete<span class="label label-success ">     </span></h6>
+    <h6 class="col-sm-3">Trip Not Viable <strong>Or</strong> Not Complete<span class="label label-warning ">     </span></h6>
+    <h6 class="col-sm-3">Trip Not Viable <strong>And</strong> Not Complete<span class="label label-danger">     </span></h6>
+</div>
+<div id="tripCreate"></div>
 
-<button onclick="AddTrip()" class="btn btn-primary" >Add Trip</button>
+<script>
+    function AddTrip() {
+        $.ajax({
+            url: '@Url.Action("Create", "Trips")',
+            success: function (data) {
+                $("#tripCreate").html(data);
+                $("#tripModal").modal('show');
+            }
+        })
+    }
+</script>

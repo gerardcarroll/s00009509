@@ -3,14 +3,14 @@
 @{
     int tripId = ViewBag.TripID;
 }
-
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 <div class="modal fade" id="legModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Create New Leg</h4>
-            </div>
+                <h4 class="modal-title" id="myModalLabel">Add New Leg</h4>
+            </div>            
             <div class="modal-body">
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
@@ -26,12 +26,12 @@
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.StartDate)
-                    @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control ", placeholder = "dd/mm/yyyy", onclick = "pickDate()" })
+                    @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control ", placeholder = "dd/mm/yyyy" })
                     @Html.ValidationMessageFor(model => model.StartDate, null, new { @class = "text-danger" })
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.FinishDate)
-                    @Html.TextBoxFor(model => model.FinishDate, new { @class = "form-control ", placeholder = "dd/mm/yyyy", onclick = "pickDate()" })
+                    @Html.TextBoxFor(model => model.FinishDate, new { @class = "form-control ", placeholder = "dd/mm/yyyy" })
                     @Html.ValidationMessageFor(model => model.FinishDate, null, new { @class = "text-danger" })
                 </div>                
             </div>
@@ -49,7 +49,7 @@
                         </button>
                     </div>
                 </form>
-            </div>
+            </div>            
         </div>
         <!-- /.modal-content -->
     </div>
@@ -57,39 +57,42 @@
 </div>
 <!-- /.modal -->
 
+@Scripts.Render("~/bundles/jqueryui")
+
 <script>
     $(function () {
 
-        //$("#createL").click(function () {            
-        //    var newLeg = {
-        //        StartLocation: $("#StartLocation").val(),
-        //        FinishLocation: $("#FinishLocation").val(),
-        //        StartDate: $("#StartDate").val(),
-        //        FinishDate: $("#FinishDate").val(),
-        //        TripId: tripId
-        //    };
-        //    sendLeg(newLeg);            
-        //});
-    
+        $('#StartDate').datepicker({ dateFormat: 'mm/dd/yy' });
+        $('#FinishDate').datepicker({ dateFormat: 'mm/dd/yy' });
 
-        //function pickDate() {
-        //    $('.datepicker').datepicker();
-        //}
+        $("#createL").click(function (e) {
+            e.preventDefault();
+            var newLeg = {
+                StartLocation: $("#StartLocation").val(),
+                FinishLocation: $("#FinishLocation").val(),
+                StartDate: $("#StartDate").val(),
+                FinishDate: $("#FinishDate").val(),
+                TripId: '@ViewBag.TripID'
+            }            
+            sendLeg(newLeg);
+        });
 
-        //function sendLeg(l) {
-        //    alert("got in")
-        //    $.ajax({
-        //        url: "api/LegApi/Post",
-        //        data: JSON.stringify(l),
-        //        type: "POST",
-        //        contentType: "application/json;charset=utf-8",
-        //        success: function (data) {
-        //            window.location.href = ("/Home/Index");
-        //        },
-        //        error: function (error) {
-        //        }
-        //    });
-        //}
+
+        function sendLeg(leg) {
+            alert("got in")
+            $.ajax({
+                url: "api/LegApi/Post",
+                data: JSON.stringify(leg),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    window.location.href = ("/Home/Index");
+                },
+                error: function (error) {
+                    $("#error").css('visibility', 'visible');
+                }
+            });
+        }
     });
 
 </script>

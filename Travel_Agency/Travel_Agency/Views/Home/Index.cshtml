@@ -7,71 +7,48 @@
 @section scripts
 {
     <script>
-        function GetLegs(TripId) {
 
-            //$("#loader1").css("display", "Block");
-
-        $.ajax({
-            url: '@Url.Action("GetLegs", "Legs")',
-            data: { id: TripId },
-            success: function (data) {
-                $("#tblTripLegs").html(data);
-            }
-        })
-    }
-
-    
-        function AddTrip() {
-            $.ajax({
-                url: '@Url.Action("Create", "Trips")',
-                success: function (data) {
-                    $("#tripCreate").html(data);
-                    $("#tripModal").modal('show');
-                }
-            })
-        }
-
-        function AddLeg(id) {
-            $.ajax({
-                url: '@Url.Action("Create", "Legs")',
-                data: { id : id},
-                success: function (data) {
-                    $("#legCreate").html(data);
-                    $("#legModal").modal('show');
-                }
-            })
-        }
-
-        $("#createL").click(function () {
-            var newLeg = {
-                StartLocation: $("#StartLocation").val(),
-                FinishLocation: $("#FinishLocation").val(),
-                StartDate: $("#StartDate").val(),
-                FinishDate: $("#FinishDate").val(),
-                TripId: tripId
-            };
-            sendLeg(newLeg);
+        $(document).ready(function () {
+            toastr.success('All ' + @Model.Count() + ' Trips Retrieved');
         });
 
-
-        function pickDate() {
-            $('.datepicker').datepicker();
-        }
-
-        function sendLeg(l) {
-            alert("got in")
+        function GetLegs(TripId) {            
+            
             $.ajax({
-                url: "api/LegApi/Post",
-                data: JSON.stringify(l),
-                type: "POST",
-                contentType: "application/json;charset=utf-8",
+                url: '@Url.Action("GetLegs", "Legs")',
+                data: { id: TripId },
                 success: function (data) {
-                    window.location.href = ("/Home/Index");
-                },
-                error: function (error) {
+                    $("#tblTripLegs").html(data);
                 }
-            });
+            })
         }
+
+    $("#createT").click(function () {
+                
+        var newTrip = {
+            Name: $("#Name").val(),
+            StartDate: $("#StartDate").val(),
+            FinishDate: $("#FinishDate").val(),
+            MinGuests: $("#MinGuests").val()
+        };
+        sendTrip(newTrip);
+    });            
+
+    function sendTrip(t) {
+                
+        $.ajax({
+            url: "api/TripApi/Post",
+            data: JSON.stringify(t),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                window.location.href = ("/Home/Index");
+            },
+            error: function (error) {
+            }
+        });
+
+    }
     
     </script>
 }
@@ -98,8 +75,7 @@
     </div>    
 </div>
 <div id="guestModal"></div>
-<div id="tripCreate"></div>
-<div id="legCreate"></div>
+<div id="legDetail"></div>
 
 
 

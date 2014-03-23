@@ -1,0 +1,65 @@
+﻿@model Travel_Agency.Models.Leg
+
+<div class="modal fade" id="gModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Add New Guest</h4>
+            </div>
+            <div class="modal-body">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.ID)
+                    
+                    @Html.DropDownListFor(model => model.Guests, new SelectList(ViewBag.Guests, "FirstName"), new { @class = "form-control" })
+                </div>                
+            </div>
+            <div id="error" style="visibility:hidden; color:red;">
+                <h4>Error Adding New Guest</h4>
+            </div>
+            <div class="modal-footer">
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+                    <div class="form-group">
+                        <button id="btnSend" class="btn btn-primary ">
+                            <i class="glyphicon glyphicon-plus-sign"></i> Add Guest
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<script>
+    $("#btnSend").click(function (e) {
+        e.preventDefault()
+        var items = [];
+        items.push($("#Guests").val())
+        items.push('@Model.ID')
+        SendGuest(items);
+    });
+
+    function SendGuest(newGuest) {        
+        $.ajax({
+            url: "api/GuestApi/Post",
+            data: JSON.stringify(newGuest),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            success: function (data) {
+                //window.location.href = ("/Home/Index");
+            },
+            error: function (error) {
+                $("#error").css('visibility', 'visible');
+            }
+        });
+
+    }
+</script>
