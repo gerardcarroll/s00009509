@@ -47,16 +47,17 @@
         SendGuest(items);
     });
 
-    function SendGuest(newGuest) {        
+    function SendGuest(newGuest) {
+        //alert("got in")
         $.ajax({
-            url: "api/GuestApi/Post",
+            url: "http://localhost:49775/api/GuestApi/Post",
             data: JSON.stringify(newGuest),
             type: "POST",
             contentType: "application/json;charset=utf-8",
-            success: function (data) {
-                //window.location.href = ("/Home/Index");
+            success: function (jqXHR, data) {
+                window.location.href = ("/Home/Index/");
             },
-            error: function (error) {
+            error: function (jqXHR, error) {
                 $("#error").css('visibility', 'visible');
             }
         });

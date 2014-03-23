@@ -3,8 +3,9 @@
     Nullable<DateTime> endOfLastLeg = null;
     bool ok = true;
     int legCount = 0;
-    bool gaps = true;  
+    bool gaps = true;    
 }
+
 @if (Model.Any())
 {
     <div id="loader1" class="text-center" style="display: none;">
@@ -126,8 +127,13 @@ else //if the trip has no legs
             else {
                 toastr.success('All ' + @legCount + ' Legs Retrieved');
             }
+
+            if ('@ViewBag.Viable' == 'False') {
+                toastr.warning("This Trip Is Not Viable");
+            }
             
         });
+
 
         $("#legName").text("Legs For: " + '@ViewBag.tripname');
 

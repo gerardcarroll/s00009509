@@ -81,6 +81,9 @@ namespace Travel_Agency.Migrations
                 new Guest { ID = 11, FirstName = "Joe", Legs = new List<Leg>() }
                 );
 
+            //Save changes above before entering Seed Data for Auto Generated Table LegGuests
+            db.SaveChanges();
+
             //Add Guests for Trip 1 Legs
             AddOrUpdateGuest(db, 1, 1);
             AddOrUpdateGuest(db, 2, 1);

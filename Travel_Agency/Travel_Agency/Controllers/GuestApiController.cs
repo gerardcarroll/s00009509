@@ -21,6 +21,8 @@ namespace Travel_Agency.Controllers
         [HttpPost]
         public HttpResponseMessage Post(List<String> g)
         {
+            HttpResponseMessage response;
+
             Guest guest = _repo.GetGuestByName(g[0]);
             int legId = int.Parse(g[1]);
             if (guest != null)
@@ -28,13 +30,16 @@ namespace Travel_Agency.Controllers
                 if (!AlreadyOnLeg(guest, g[1]))
                 {
                     _repo.AddGuestToLeg(guest, legId);
-                    CheckIfTripViable(legId);                    
+                    CheckIfTripViable(legId);
+                    
+                    return response = new HttpResponseMessage(HttpStatusCode.Accepted);                    
                 }
-
-                var response = Request.CreateResponse<Guest>(HttpStatusCode.Accepted, guest);
-                return response;
-            }
-            throw new HttpResponseException(HttpStatusCode.BadRequest);
+                else
+                {
+                    return response = new HttpResponseMessage(HttpStatusCode.Conflict);                    
+                }
+            }            
+            return response = new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
         private void CheckIfTripViable(int legId)

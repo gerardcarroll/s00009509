@@ -20,7 +20,14 @@ namespace Travel_Agency.Controllers
 
         // GET api/legs/5
         public ActionResult GetLegs(int id)
-        {            
+        {
+            var q = _repo.GetLegsForTrip(id).FirstOrDefault();
+            if (q != null)
+            {
+                ViewBag.Viable = q.Trip.Viable;
+            }
+            
+            
             ViewBag.tripname = _repo.GetTripName(id);
             ViewBag.tripId = id;            
             return PartialView("_TripLeg", _repo.GetLegsForTrip(id));

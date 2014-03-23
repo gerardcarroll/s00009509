@@ -57,7 +57,6 @@
 </div>
 <!-- /.modal -->
 
-@Scripts.Render("~/bundles/jqueryui")
 
 <script>
     $(function () {
@@ -79,9 +78,9 @@
 
 
         function sendLeg(leg) {
-            alert("got in")
+            //alert("got in")
             $.ajax({
-                url: "api/LegApi/Post",
+                url: "http://localhost:49775/api/LegApi/Post",
                 data: JSON.stringify(leg),
                 type: "POST",
                 contentType: "application/json;charset=utf-8",
