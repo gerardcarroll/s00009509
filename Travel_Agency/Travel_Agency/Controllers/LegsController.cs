@@ -36,10 +36,16 @@ namespace Travel_Agency.Controllers
 
         public ActionResult GetDetails(int legid)
         {
+            List<String> names = new List<String>();
             var q = _repo.GetLegById(legid);
             //get start location image url
             ViewBag.StartLocation = GetLocationURL(q.StartLocation);
             ViewBag.EndLocation = GetLocationURL(q.FinishLocation);
+            foreach (Guest g in q.Guests)
+            {
+                names.Add(g.FirstName);
+            }
+            ViewBag.Guests = names;
 
             return PartialView("_LegDetails", q);
             //return PartialView("_LegDetails", _repo.GetLegById(legid));

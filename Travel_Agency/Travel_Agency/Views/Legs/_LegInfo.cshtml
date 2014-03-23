@@ -21,19 +21,22 @@
 </div>
 <div class="row">
     <div class="col-md-offset-4">
-        
+        <p></p>
     </div>
     <div class="col-md-8">
-        <h5>Guests Travelling:</h5>
-        <p id="gp"></p>
+        <h4>Guests Travelling:</h4>
+        <h5 id="gp"></h5>
     </div>
 </div>
 
 <script>
-    @*var guests = [];
-    guests = '@ViewBag.Guests';
-    for (var i = 0; i < guests.length; i++) {
-        $("#gp").innerHTML = guests[i] + ", ";
-    }*@
-</script>
+    $( document ).ready(function() {
 
+        var array = @Html.Raw(Json.Encode(ViewBag.Guests));
+        for(var i = 0; i < array.length; i++) {
+            document.getElementById('gp').innerHTML += (array[i] + "; ");            
+        }
+
+    });
+
+</script>

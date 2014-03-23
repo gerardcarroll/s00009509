@@ -24,31 +24,4 @@
 </div>
 <!-- /.modal -->
 
-<script>
-    $(document).ready(function(){
 
-        var startLoc = '@Model.StartLocation';
-        var endLoc = '@Model.FinishLocation'
-
-        $.getJSON({
-            url: "http://en.wikipedia.org/w/api.php?action=query&format=json&callback=test&prop=langlinks&lllimit=500&titles=kaas&generator=images&titles=" + startLoc +"&prop=info",
-            success: function (data) {
-                alert("success");
-                alert(data);
-            },
-            error: function (data) {
-                alert("error")
-                alert(data);
-            }
-        });
-
-        //$.getJSON("http://en.wikipedia.org/w/api.php?action=query&format=json&callback=test&prop=langlinks&lllimit=500&titles=kaas&generator=images&titles=" + startLoc + "&prop=info")
-        //    .done(function (data) {
-        //        alert(data[1].images[0]);
-
-        //    });
-    
-
-    });
-    
-</script>
