@@ -1,0 +1,39 @@
+﻿@model Travel_Agency.Models.Leg
+
+<div class="row">
+    <div class="col-md-4">
+        <img height="200" width="150" src="@ViewBag.StartLocation" />
+    </div>
+    <div class="col-md-8">
+        <h3>Starting in @Model.StartLocation</h3>
+        <p>Date : @Model.StartDate.ToShortDateString()</p>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <img height="200" width="150" src="@ViewBag.EndLocation">
+    </div>
+    <div class="col-md-8">
+        <h3>Finishing in @Model.FinishLocation</h3>
+        <p>Date : @Model.FinishDate.ToShortDateString()</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-4">
+        
+    </div>
+    <div class="col-md-8">
+        <h5>Guests Travelling:</h5>
+        <p id="gp"></p>
+    </div>
+</div>
+
+<script>
+    @*var guests = [];
+    guests = '@ViewBag.Guests';
+    for (var i = 0; i < guests.length; i++) {
+        $("#gp").innerHTML = guests[i] + ", ";
+    }*@
+</script>
+

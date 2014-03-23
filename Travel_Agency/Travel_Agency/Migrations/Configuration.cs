@@ -21,7 +21,7 @@ namespace Travel_Agency.Migrations
             //Add Seed Trip Data Here
             db.Trips.AddOrUpdate(
                 t => t.ID,
-                new Trip { ID = 1, Name = "Space Odyssey", StartDate = DateTime.Now.Date, FinishDate = DateTime.Now.AddDays(9), MinGuests = 5, Viable = true, Complete = true },
+                new Trip { ID = 1, Name = "The States", StartDate = DateTime.Now.Date, FinishDate = DateTime.Now.AddDays(9), MinGuests = 5, Viable = true, Complete = true },
                 new Trip { ID = 2, Name = "There And Back", StartDate = DateTime.Parse("10/04/2014"), FinishDate = DateTime.Parse("10/04/2014").AddDays(9), MinGuests = 5, Viable = false, Complete = true },
                 new Trip { ID = 3, Name = "Around Ireland", StartDate = DateTime.Parse("15/04/2014"), FinishDate = DateTime.Parse("15/04/2014").AddDays(9), MinGuests = 3, Viable = false, Complete = false },
                 new Trip { ID = 4, Name = "Six Nations", StartDate = DateTime.Parse("01/02/2015"), FinishDate = DateTime.Parse("01/02/2015").AddDays(30), MinGuests = 3, Viable = true, Complete = false },
@@ -32,11 +32,11 @@ namespace Travel_Agency.Migrations
             db.Legs.AddOrUpdate(
                 l => l.ID,
                 //Trip 1 Legs
-                new Leg { ID = 1, StartLocation = "Dublin", FinishLocation = "Florida", TripID = 1, StartDate = DateTime.Now, FinishDate = DateTime.Now.AddDays(1), Guests = new List<Guest>() },
-                new Leg { ID = 2, StartLocation = "Florida", FinishLocation = "Mars", TripID = 1, StartDate = DateTime.Now.AddDays(2), FinishDate = DateTime.Now.AddDays(3), Guests = new List<Guest>() },
-                new Leg { ID = 3, StartLocation = "Mars", FinishLocation = "Venus", TripID = 1, StartDate = DateTime.Now.AddDays(4), FinishDate = DateTime.Now.AddDays(5), Guests = new List<Guest>() },
-                new Leg { ID = 4, StartLocation = "Venus", FinishLocation = "Jupiter", TripID = 1, StartDate = DateTime.Now.AddDays(6), FinishDate = DateTime.Now.AddDays(7), Guests = new List<Guest>() },
-                new Leg { ID = 5, StartLocation = "Jupiter", FinishLocation = "The Sun", TripID = 1, StartDate = DateTime.Now.AddDays(8), FinishDate = DateTime.Now.AddDays(9), Guests = new List<Guest>() },
+                new Leg { ID = 1, StartLocation = "Dublin", FinishLocation = "Boston", TripID = 1, StartDate = DateTime.Now, FinishDate = DateTime.Now.AddDays(1), Guests = new List<Guest>() },
+                new Leg { ID = 2, StartLocation = "Boston", FinishLocation = "Miami", TripID = 1, StartDate = DateTime.Now.AddDays(2), FinishDate = DateTime.Now.AddDays(3), Guests = new List<Guest>() },
+                new Leg { ID = 3, StartLocation = "Miami", FinishLocation = "Orlando", TripID = 1, StartDate = DateTime.Now.AddDays(4), FinishDate = DateTime.Now.AddDays(5), Guests = new List<Guest>() },
+                new Leg { ID = 4, StartLocation = "Orlando", FinishLocation = "Chicago", TripID = 1, StartDate = DateTime.Now.AddDays(6), FinishDate = DateTime.Now.AddDays(7), Guests = new List<Guest>() },
+                new Leg { ID = 5, StartLocation = "Chicago", FinishLocation = "Dublin", TripID = 1, StartDate = DateTime.Now.AddDays(8), FinishDate = DateTime.Now.AddDays(9), Guests = new List<Guest>() },
 
                 //Trip 2 Legs
                 new Leg { ID = 6, StartLocation = "Dublin", FinishLocation = "London", TripID = 2, StartDate = Convert.ToDateTime("10/04/2014"), FinishDate = Convert.ToDateTime("10/04/2014").AddDays(1), Guests = new List<Guest>() },
@@ -46,21 +46,21 @@ namespace Travel_Agency.Migrations
                 new Leg { ID = 10, StartLocation = "Rome", FinishLocation = "Dublin", TripID = 2, StartDate = Convert.ToDateTime("10/04/2014").AddDays(8), FinishDate = Convert.ToDateTime("10/04/2014").AddDays(9), Guests = new List<Guest>() },
 
                 //Trip 3 Legs
-                new Leg { ID = 11, StartLocation = "Sligo", FinishLocation = "Galway", TripID = 3, StartDate = Convert.ToDateTime("15/04/2014"), FinishDate = Convert.ToDateTime("15/04/2014").AddDays(1), Guests = new List<Guest>() },
-                new Leg { ID = 12, StartLocation = "Cork", FinishLocation = "Waterford", TripID = 3, StartDate = Convert.ToDateTime("15/04/2014").AddDays(4), FinishDate = Convert.ToDateTime("15/04/2014").AddDays(5), Guests = new List<Guest>() },
-                new Leg { ID = 13, StartLocation = "Dublin", FinishLocation = "Sligo", TripID = 3, StartDate = Convert.ToDateTime("15/04/2014").AddDays(8), FinishDate = Convert.ToDateTime("15/04/2014").AddDays(9), Guests = new List<Guest>() },
+                new Leg { ID = 11, StartLocation = "Derry", FinishLocation = "Galway", TripID = 3, StartDate = Convert.ToDateTime("15/04/2014"), FinishDate = Convert.ToDateTime("15/04/2014").AddDays(1), Guests = new List<Guest>() },
+                new Leg { ID = 12, StartLocation = "Limerick", FinishLocation = "Waterford", TripID = 3, StartDate = Convert.ToDateTime("15/04/2014").AddDays(4), FinishDate = Convert.ToDateTime("15/04/2014").AddDays(5), Guests = new List<Guest>() },
+                new Leg { ID = 13, StartLocation = "Dublin", FinishLocation = "Belfast", TripID = 3, StartDate = Convert.ToDateTime("15/04/2014").AddDays(8), FinishDate = Convert.ToDateTime("15/04/2014").AddDays(9), Guests = new List<Guest>() },
 
                 //Trip 4 Legs
-                new Leg { ID = 14, StartLocation = "Ireland", FinishLocation = "Italy", TripID = 4, StartDate = Convert.ToDateTime("01/02/2015"), FinishDate = Convert.ToDateTime("01/02/2015").AddDays(5), Guests = new List<Guest>() },
-                new Leg { ID = 15, StartLocation = "Italy", FinishLocation = "France", TripID = 4, StartDate = Convert.ToDateTime("01/02/2015").AddDays(6), FinishDate = Convert.ToDateTime("01/02/2015").AddDays(10), Guests = new List<Guest>() },
-                new Leg { ID = 16, StartLocation = "France", FinishLocation = "England", TripID = 4, StartDate = Convert.ToDateTime("01/02/2015").AddDays(11), FinishDate = Convert.ToDateTime("01/02/2015").AddDays(15), Guests = new List<Guest>() },
-                new Leg { ID = 17, StartLocation = "England", FinishLocation = "Wales", TripID = 4, StartDate = Convert.ToDateTime("01/02/2015").AddDays(16), FinishDate = Convert.ToDateTime("01/02/2015").AddDays(20), Guests = new List<Guest>() },
-                new Leg { ID = 18, StartLocation = "Scotland", FinishLocation = "Dublin", TripID = 4, StartDate = Convert.ToDateTime("01/02/2015").AddDays(26), FinishDate = Convert.ToDateTime("01/02/2015").AddDays(30), Guests = new List<Guest>() },
+                new Leg { ID = 14, StartLocation = "Dublin", FinishLocation = "Rome", TripID = 4, StartDate = Convert.ToDateTime("01/02/2015"), FinishDate = Convert.ToDateTime("01/02/2015").AddDays(5), Guests = new List<Guest>() },
+                new Leg { ID = 15, StartLocation = "Rome", FinishLocation = "Paris", TripID = 4, StartDate = Convert.ToDateTime("01/02/2015").AddDays(6), FinishDate = Convert.ToDateTime("01/02/2015").AddDays(10), Guests = new List<Guest>() },
+                new Leg { ID = 16, StartLocation = "Paris", FinishLocation = "London", TripID = 4, StartDate = Convert.ToDateTime("01/02/2015").AddDays(11), FinishDate = Convert.ToDateTime("01/02/2015").AddDays(15), Guests = new List<Guest>() },
+                new Leg { ID = 17, StartLocation = "London", FinishLocation = "Cardiff", TripID = 4, StartDate = Convert.ToDateTime("01/02/2015").AddDays(16), FinishDate = Convert.ToDateTime("01/02/2015").AddDays(20), Guests = new List<Guest>() },
+                new Leg { ID = 18, StartLocation = "Edinburgh", FinishLocation = "Dublin", TripID = 4, StartDate = Convert.ToDateTime("01/02/2015").AddDays(26), FinishDate = Convert.ToDateTime("01/02/2015").AddDays(30), Guests = new List<Guest>() },
 
                 //Trip 5 Legs
                 new Leg { ID = 19, StartLocation = "Dublin", FinishLocation = "Istanbul", TripID = 5, StartDate = Convert.ToDateTime("01/05/2014"), FinishDate = Convert.ToDateTime("01/05/2014").AddDays(16), Guests = new List<Guest>() },
-                new Leg { ID = 20, StartLocation = "Istanbul", FinishLocation = "Singapore", TripID = 5, StartDate = Convert.ToDateTime("01/05/2014").AddDays(17), FinishDate = Convert.ToDateTime("01/05/2014").AddDays(32), Guests = new List<Guest>() },
-                new Leg { ID = 21, StartLocation = "Singapore", FinishLocation = "Auckland", TripID = 5, StartDate = Convert.ToDateTime("01/05/2014").AddDays(33), FinishDate = Convert.ToDateTime("01/05/2014").AddDays(48), Guests = new List<Guest>() },
+                new Leg { ID = 20, StartLocation = "Istanbul", FinishLocation = "Dubai", TripID = 5, StartDate = Convert.ToDateTime("01/05/2014").AddDays(17), FinishDate = Convert.ToDateTime("01/05/2014").AddDays(32), Guests = new List<Guest>() },
+                new Leg { ID = 21, StartLocation = "Dubai", FinishLocation = "Auckland", TripID = 5, StartDate = Convert.ToDateTime("01/05/2014").AddDays(33), FinishDate = Convert.ToDateTime("01/05/2014").AddDays(48), Guests = new List<Guest>() },
                 new Leg { ID = 22, StartLocation = "Auckland", FinishLocation = "Los Angeles", TripID = 5, StartDate = Convert.ToDateTime("01/05/2014").AddDays(49), FinishDate = Convert.ToDateTime("01/05/2014").AddDays(64), Guests = new List<Guest>() }
                 );
             

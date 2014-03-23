@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using Travel_Agency.DAL;
 using Travel_Agency.Models;
+using HtmlAgilityPack;
 
 namespace Travel_Agency.Controllers
 {
@@ -35,7 +36,48 @@ namespace Travel_Agency.Controllers
 
         public ActionResult GetDetails(int legid)
         {
-            return PartialView("_LegDetails", _repo.GetLegById(legid));
+            var q = _repo.GetLegById(legid);
+            //get start location image url
+            ViewBag.StartLocation = GetLocationURL(q.StartLocation);
+            ViewBag.EndLocation = GetLocationURL(q.FinishLocation);
+
+            return PartialView("_LegDetails", q);
+            //return PartialView("_LegDetails", _repo.GetLegById(legid));
+        }
+
+        public ActionResult LegInfo(int id)
+        {
+            List<String> names = new List<String>();
+            var q = _repo.GetLegById(id);
+            //get start location image url
+            ViewBag.StartLocation = GetLocationURL(q.StartLocation);
+            ViewBag.EndLocation = GetLocationURL(q.FinishLocation);
+            foreach (Guest g in q.Guests)
+            {
+                names.Add(g.FirstName);
+            }
+            ViewBag.Guests = names;
+            return PartialView("_LegInfo", q);
+            
+        }
+
+        private string GetLocationURL(string p)
+        {
+            List<String> sources = new List<String>();
+            HtmlWeb web = new HtmlWeb();
+            HtmlDocument doc = web.Load("http://en.wikipedia.org/wiki/" + p);
+            var nodes = doc.DocumentNode.SelectNodes("//img[@src]");
+            sources = nodes == null ? new List<string>() : nodes.ToList().ConvertAll(r => r.Attributes.ToList().ConvertAll(i => i.Value)).SelectMany(j => j).ToList();
+            string lower = "";
+            foreach (string s in sources)
+            {
+                lower = s.ToLower();
+                if (lower.Contains("commons") && lower.Contains("collage") || lower.Contains("commons") && lower.Contains("montage") || (((lower.Contains("montage") && lower.Contains("commons")) && (lower.Contains("jpg") || lower.Contains("png")))))
+                {
+                    return s;
+                }
+            }
+            return "";
         }
 
         [HttpGet]
