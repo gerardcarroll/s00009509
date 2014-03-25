@@ -8,9 +8,7 @@
 
 @if (Model.Any())
 {
-    <div id="loader1" class="text-center" style="display: none;">
-        Loading...<img src="~/Images/ajax-loading.gif" />
-    </div>
+    
     <table class="table table-bordered table-condensed">
         <tr>
             <th>
@@ -115,6 +113,7 @@ else //if the trip has no legs
 <div id="guestModal"></div>
 
 
+
     <script>
 
         $(document).ready(function () {
@@ -136,14 +135,16 @@ else //if the trip has no legs
 
 
         $("#legName").text("Legs For: " + '@ViewBag.tripname');
-
-        function AddLeg(id) {            
+        
+        function AddLeg(id) {
+            $("#loader1").css('display', 'block');
             $.ajax({
                 url: '@Url.Action("Create", "Legs")',
                 data: { id: id },
                 success: function (data) {
+                    $("#loader1").css('display', 'none');
                     $("#legCreate").html(data);
-                    $("#legModal").modal('show');
+                    $("#legModal").modal('show');                    
                 }
             })
         }

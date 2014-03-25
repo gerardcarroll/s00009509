@@ -12,13 +12,15 @@
             toastr.success('All ' + @Model.Count() + ' Trips Retrieved');
         });
 
-        function GetLegs(TripId) {            
+        function GetLegs(TripId) {
+            $("#loader1").css('display', 'block');
             //alert("gotin");
             $.ajax({
                 url: '@Url.Action("GetLegs", "Legs")',
                 data: { id: TripId },
                 success: function (data) {
                     $("#tblTripLegs").html(data);
+                    $("#loader1").css('display', 'none');
                 }
             })
         }
@@ -76,6 +78,11 @@
 </div>
 <div id="guestModal"></div>
 <div id="legDetail"></div>
+<div id="loader1" class="text-center" style="display: none;">
+    <img src="~/Images/loader.gif" height="80" width="80" />
+    <br />
+    <h4>Loading ...</h4>    
+</div>
 
 
 

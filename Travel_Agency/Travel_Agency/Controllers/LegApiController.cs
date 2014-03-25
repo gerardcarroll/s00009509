@@ -30,11 +30,13 @@ namespace Travel_Agency.Controllers
                     _repo.AddLeg(l);
                     complete = CheckIsTripComplete(l);
                     _repo.UpdateTripComplete(l.TripID, complete);
-                    var response = Request.CreateResponse<Leg>(HttpStatusCode.Created, l);
-                    return response;
+                    
+                    return Request.CreateResponse(HttpStatusCode.Accepted, l, "Leg Created!!");
                 }
+
+                return Request.CreateErrorResponse(HttpStatusCode.Conflict, "Dates Invalid!!");
             }
-            throw new HttpResponseException(HttpStatusCode.BadRequest);
+            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Invalid Data!!");
         }
 
         private bool CheckIsTripComplete(Leg l)

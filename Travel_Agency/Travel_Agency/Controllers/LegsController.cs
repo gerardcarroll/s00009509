@@ -51,21 +51,21 @@ namespace Travel_Agency.Controllers
             //return PartialView("_LegDetails", _repo.GetLegById(legid));
         }
 
-        public ActionResult LegInfo(int id)
-        {
-            List<String> names = new List<String>();
-            var q = _repo.GetLegById(id);
-            //get start location image url
-            ViewBag.StartLocation = GetLocationURL(q.StartLocation);
-            ViewBag.EndLocation = GetLocationURL(q.FinishLocation);
-            foreach (Guest g in q.Guests)
-            {
-                names.Add(g.FirstName);
-            }
-            ViewBag.Guests = names;
-            return PartialView("_LegInfo", q);
+        //public ActionResult LegInfo(int id)
+        //{
+        //    List<String> names = new List<String>();
+        //    var q = _repo.GetLegById(id);
+        //    //get start location image url
+        //    ViewBag.StartLocation = GetLocationURL(q.StartLocation);
+        //    ViewBag.EndLocation = GetLocationURL(q.FinishLocation);
+        //    foreach (Guest g in q.Guests)
+        //    {
+        //        names.Add(g.FirstName);
+        //    }
+        //    ViewBag.Guests = names;
+        //    return PartialView("_LegInfo", q);
             
-        }
+        //}
 
         private string GetLocationURL(string p)
         {
@@ -89,6 +89,7 @@ namespace Travel_Agency.Controllers
         [HttpGet]
         public ActionResult Create(int id)
         {
+            HtmlHelper.UnobtrusiveJavaScriptEnabled = true;
             ViewBag.TripID = id; 
             return PartialView("_CreateLeg");
         }

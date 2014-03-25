@@ -6,22 +6,25 @@
     <title>@ViewBag.Title - S00009509 Travel</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/themes/base/css")    
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+    <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/superhero/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">    
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")  
     
-    @Scripts.Render("~/bundles/jqueryval")   
+       
    
 </head>
-<body>
+<body class="container" >
     
-    <div class="container">
-        
+    <div>
+
         @RenderBody()
-        
+
     </div>
     
     @Scripts.Render("~/bundles/jqueryui") 
     @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="http://ajax.aspnetcdn.com/ajax/mvc/5.1/jquery.validate.unobtrusive.js"></script>
 </body>
 </html>

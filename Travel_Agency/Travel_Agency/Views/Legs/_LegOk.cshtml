@@ -27,22 +27,25 @@
 <script>
 
     function GetLegDetails(id){
+        $("#loader1").css('display', 'block');
         $.ajax({
             url: '@Url.Action("GetDetails", "Legs")',
             data: { legid: id },
             success: function (data) {
                 $("#legDetail").html(data);
                 $("#detailModal").modal('show');
+                $("#loader1").css('display', 'none');
             }
         });
     }
 
     function AddGuests(id) {
-
+        $("#loader1").css('display', 'block');
         $.ajax({
             url: '@Url.Action("AddGuest", "Guest")',
             data: { id: id },
             success: function (data) {
+                $("#loader1").css('display', 'none');
                 $("#guestModal").html(data);
                 $('#gModal').modal('show');
             }
