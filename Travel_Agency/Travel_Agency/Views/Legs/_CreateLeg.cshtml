@@ -86,7 +86,7 @@
                 type: "POST",
                 contentType: "application/json;charset=utf-8",
                 success: function (data) {
-                    alert(data)
+                    //alert(data)
                     toastr.success('Leg Created!!');
                     setTimeout(function () {
                         window.location.href = ("/Home/Index");
@@ -94,7 +94,7 @@
                     
                 },
                 error: function (error) {
-                    alert(JSON.stringify(error));
+                    //alert(JSON.stringify(error));
                     $("#error").css('visibility', 'visible');
                 }
             });

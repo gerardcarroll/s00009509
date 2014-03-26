@@ -80,10 +80,16 @@
                         type: "POST",
                         contentType: "application/json;charset=utf-8",
                         success: function (result) {
-                            window.location.replace('/Home/Index');                            
+                            $("#error").css('visibility', 'hidden');
+                            toastr.success('Trip Created!!');
+                            setTimeout(function () {
+                                window.location.href = ("/Home/Index");
+                            }, 1000);
                         },
 
                         error: function (result) {
+                            //alert(result)
+                            document.getElementById("error").innerHTML = result;
                             $("#error").css('visibility', 'visible');
                             //toastr.info(' *** ' + error);
                         }

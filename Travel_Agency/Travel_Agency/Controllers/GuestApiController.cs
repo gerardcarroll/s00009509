@@ -21,8 +21,6 @@ namespace Travel_Agency.Controllers
         [HttpPost]
         public HttpResponseMessage Post(List<String> g)
         {
-            HttpResponseMessage response;
-
             Guest guest = _repo.GetGuestByName(g[0]);
             int legId = int.Parse(g[1]);
             if (guest != null)
@@ -31,25 +29,49 @@ namespace Travel_Agency.Controllers
                 {
                     _repo.AddGuestToLeg(guest, legId);
                     CheckIfTripViable(legId);
-                    
-                    return response = new HttpResponseMessage(HttpStatusCode.Accepted);                    
+
+                    return Request.CreateResponse(HttpStatusCode.Accepted, "Guest Added!!");                    
                 }
                 else
                 {
-                    return response = new HttpResponseMessage(HttpStatusCode.Conflict);                    
+                    return Request.CreateErrorResponse(HttpStatusCode.Conflict, "Guest is Already Booked On Leg!!");                    
                 }
-            }            
-            return response = new HttpResponseMessage(HttpStatusCode.BadRequest);
+            }
+            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Invalid Data!!");
         }
 
         private void CheckIfTripViable(int legId)
         {
+            //To determine if the trip is viable a guest can only count
+            //towards the guest count if they are on two or more legs.
+            //The number on two or more legs is counted/
+            //If this is >= MinGuests then Trip is viable
+
+            //However if the trip only has one leg from start to finish of the Trip
+            //then the Min Guests is only accounted for in that leg
+
             List<Guest> guests = _repo.GetAllGuests();
             Leg leg = _repo.GetLegById(legId);
             Trip trip = _repo.GetTripById(leg.TripID);
             Int32 minGuests = _repo.GetMinGuestsForTrip(trip.ID);
             List<Int32> guestIds = new List<Int32>();
             int counter = 0;
+
+            //Check if trip is complete
+            if (trip.Complete)
+            {
+                //If trip has only one leg
+                if (trip.Legs.Count == 1)
+                {
+                    //if min guests is ok
+                    if (leg.Guests.Count >= trip.MinGuests)
+                    {
+                        //Update the trip to viable
+                        _repo.UpdateTripViability(trip.ID, true);
+                        return;
+                    }
+                }
+            }
 
             foreach (Guest g in guests)
             {

@@ -54,10 +54,16 @@
             data: JSON.stringify(newGuest),
             type: "POST",
             contentType: "application/json;charset=utf-8",
-            success: function (jqXHR, data) {
-                window.location.href = ("/Home/Index/");
+            success: function (data) {
+                $("#error").css('visibility', 'hidden');
+                toastr.success('Guest Added!!');
+                //$("#gModal").modal('hide');
+                //GetLegs('@Model.ID')
+                setTimeout(function () {
+                    window.location.href = ("/Home/Index");
+                }, 1000);
             },
-            error: function (jqXHR, error) {
+            error: function (data) {                
                 $("#error").css('visibility', 'visible');
             }
         });

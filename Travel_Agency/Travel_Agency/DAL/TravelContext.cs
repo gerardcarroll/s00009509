@@ -15,7 +15,7 @@ namespace Travel_Agency.DAL
         public DbSet<Guest> Guests { get; set; }
         
 
-        public TravelContext() : base("TravelContext")
+        public TravelContext() : base("TravelContext3")
         {            
             
         }

@@ -23,12 +23,27 @@ namespace Travel_Agency.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repo.AddTrip(trip);
+                if (CheckDates(trip))
+                {
+                    _repo.AddTrip(trip);
 
-                var response = Request.CreateResponse<Trip>(HttpStatusCode.Created, trip);
-                return response;
+                    return Request.CreateResponse(HttpStatusCode.Accepted, "Trip Created!!");                    
+                }
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.Conflict, "Invalid Dates!!");                
+                }
+                
             }
-            throw new HttpResponseException(HttpStatusCode.BadRequest);
+            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Invalid Data!!");
+        }
+        private bool CheckDates(Trip t)
+        {
+            if (t.StartDate > t.FinishDate)
+            {
+                return false;
+            }
+            return true;
         }
                 
     }

@@ -53,34 +53,7 @@
 
     }
     
-
-    
-
-    @*$("#btnAddGuest").click(function () {
         
-        var newGuest = {
-            Name: $("#guestList").val(),
-            Leg: '@Model.ID'
-        };
-        alert(newGuest.Leg);
-        SendGuest(newGuest);
-    });
-
-    function SendGuest(newGuest) {
-        alert("got in")
-        $.ajax({
-            url: "api/Guest/Post",
-            data: JSON.stringify(newGuest),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            success: function (data) {
-                window.location.href = ("/Home/Index");
-            },
-            error: function (error) {
-            }
-        });
-
-    }*@
 </script>
    
 
